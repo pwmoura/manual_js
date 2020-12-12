@@ -1,0 +1,57 @@
+Podemos obter alguma formatação básica ao escrevermos strings com o uso de
+caracteres especiais para a linguagem JavaScript. No exemplo a seguir:
+
+  Exemplo:
+  mensagem = "Obrigado pela visita.\nVolte em breve.";
+
+Quando inserimos o caractere \n na string. Ele faz com que haja o pulo de uma linha
+quando renderizada a string no navegador, resultando em algo como:
+
+  Renderização:
+  Obrigado pela visita.
+  Volte em breve.
+
+
+Caracteres especiais da JavaScript
+----------------------------------
+Caractere         Descrição                         Unicode hexadecimal
+\b                Backspace                         \u0008
+\f                Form feed                         \u000C
+\n                Nova linha                        \u000A
+\r                Retorno do carro                  \u000D
+\v                Tabulação vertical                \u000B
+\t                Tabulação horizontal              \u0009
+\’                Apóstrofo ou aspas simples        \u0027
+\"                Aspas duplas                      \u0022
+\\                Barra invertida                   \u005C
+
+\XXX              Caractere Latin-1                 expresso por dígitos octais de 1 a 377
+\xXX              Caractere Latin-1                 expresso por dois dígitos hexadecimais de 00 a FF
+\uXXXX            Caractere Unicode                 expresso por quatro dígitos hexadecimais
+
+Obs.: Nas três últimas linhas da tabela 1.2, consta a sintaxe geral para a representação
+de caracteres em strings nos sistemas octal e hexadecimal. O sistema octal está em
+desuso e, assim, deve ser evitado
+
+Caracteres Unicode na sintaxe JavaScript
+----------------------------------------
+Caractere                 Octal         Latin-1 hexadecimal       Unicode hexadecimal
+© (Copyright)             \251          \xA9                      \u00A9
+® (Marca registrada)      \256          \xAE                      \u00AE
+¶ (Parágrafo)             \247          \xA7                      \u00A7
+
+
+Ao codificar uma string, as vezes precisamos quebrar a linha do código sem renderizar a quebra, só por indentação
+para isso utilizamos a:
+  \ --> barra invertida é o Caractere de escape.
+
+  Exemplo:
+  <script type="text/javascript">
+    var executar = function() {
+      var caractere = "\
+        Octal:..................\251, \256, \266 \n\
+        Latin 1 Hexadecimal:....\xA9, \xAE, \xB6 \n\
+        Latin 1 Unicode:........\u00A9, \u00AE, \u00B6"
+      alert(caractere);
+    }
+  </script>

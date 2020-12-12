@@ -1,0 +1,55 @@
+Os operadores aritiméticos são:
+-------------------------------
++	Addition
+-	Subtraction
+*	Multiplication
+/	Division
+%	Modulus
+++	Increment
+--	Decrement
+
+Adicionando
+-----------
+var x = 5;
+var y = 2;
+var z = x + y;
+
+Subtraindo:
+-----------
+var x = 5;
+var y = 2;
+var z = x + y;
+
+Multiplicando:
+--------------
+var x = 5;
+var y = 2;
+var z = x * y;
+
+Dividindo:
+----------
+var x = 10;
+var y = 2;
+var z = x / y;
+
+Módulo:
+----------
+var x = 10;
+var y = 2;
+var z = x % y;
+
+Operador Unário:
+----------------
+Nesse exemplo o menos está sendo aplicado somente
+ao número 2, portanto ele é unário, ou seja, está
+sendo aplicado somente a um número.
+alert(-2);
+
+Atribuição:
+-----------
+=	x = y	x = y
++=	x += y	x = x + y
+-=	x -= y	x = x - y
+*=	x *= y	x = x * y
+/=	x /= y	x = x / y
+%=	x %= y	x = x % y

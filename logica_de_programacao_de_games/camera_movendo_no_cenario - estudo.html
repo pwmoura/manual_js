@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câmera - Movendo a câmera no jogo</title>
+    <style>
+        canvas{
+            margin: 0 auto;
+            margin-top: 80px;
+            display: block;
+            border: 1px solid #000000;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            
+            let cnv =  document.getElementById("palco")
+            let ctx = cnv.getContext("2d")
+
+            let sprites = []
+
+            const Controle = {
+                esquerda: 37,
+                cima: 38,
+                direita: 39,
+                baixo: 40,
+                presEsquerda: false,
+                presDireita: false,
+                presCima: false,
+                presBaixo: false,
+                pressionarTecla(tecla){
+                    let codigoDaTecla = tecla.keyCode
+                    if(codigoDaTecla === Controle.esquerda){
+                        Controle.presEsquerda = true
+                    }
+                    if(codigoDaTecla === Controle.direita){
+                        Controle.presDireita = true
+                    }
+                    if(codigoDaTecla === Controle.cima){
+                        Controle.presCima = true
+                    }
+                    if(codigoDaTecla === Controle.baixo){
+                        Controle.presBaixo = true
+                    }
+                },
+                liberarTecla(tecla){
+                    let codigoDaTecla = tecla.keyCode
+                    if(codigoDaTecla === Controle.esquerda){
+                        Controle.presEsquerda = false
+                    }
+                    if(codigoDaTecla === Controle.direita){
+                        Controle.presDireita = false
+                    }
+                    if(codigoDaTecla === Controle.cima){
+                        Controle.presCima = false
+                    }
+                    if(codigoDaTecla === Controle.baixo){
+                        Controle.presBaixo = false
+                    }
+                }
+            }
+
+            let background = new Image()
+            background.src = "./img/cenario.png"
+
+            const Cenario = {
+                x: 0,
+                y: 0,
+                largura: 800,
+                altura: 600,
+                sprite: background,
+                desenhar(){
+                    ctx.drawImage(
+                        Cenario.sprite,
+                        this.x,
+                        this.y,
+                        this.largura,
+                        this.altura
+                    )
+                }
+            }
+            sprites.push(Cenario)
+
+
+            const Jogador = {
+                x: 0,
+                y: 0,
+                largura: 64,
+                altura: 64,
+                src: "./img/monstro.png",
+                sprite: new Image(),
+                velocidade: 5,
+                desenhar(){
+                    let img = this.sprite
+                    img.src = this.src
+                    ctx.drawImage(
+                        img,
+                        Jogador.x,
+                        Jogador.y,
+                        Jogador.largura, 
+                        Jogador.altura
+                    )
+                },
+                mover(){
+
+                    // Move o personagem na tela.
+                    if(Controle.presCima){
+                        Jogador.y -= Jogador.velocidade
+                    }
+                    if(Controle.presBaixo){
+                        Jogador.y += Jogador.velocidade
+                    }
+                    if(Controle.presEsquerda){
+                        Jogador.x -= Jogador.velocidade
+                    }
+                    if(Controle.presDireita){
+                        Jogador.x += Jogador.velocidade
+                    }
+                    
+                    // Atualiza a câmera pela posição do jogador.
+                    if(Jogador.x < camera.limiteEsquerdo()){
+                        camera.x = Jogador.x - (camera.largura * 0.25)
+                    }
+                    if(Jogador.x + Jogador.largura > camera.limiteDireito()){
+                        camera.x = Jogador.x + Jogador.largura - (camera.largura * 0.75)
+                    }
+                    if(Jogador.y < camera.limiteSuperior()){
+                        camera.y = Jogador.y - (camera.altura * 0.25)
+                    }
+                    if(Jogador.y + Jogador.altura > camera.limiteInferior()){
+                        camera.y = Jogador.y + Jogador.altura - (camera.altura * 0.75)
+                    }
+
+                    // Limitando a câmera (evitando que ela saia do cenário).
+                    if(camera.x < 0){
+                        camera.x = 0
+                    }
+                    if(camera.x + camera.largura > Cenario.largura){
+                        camera.x = Cenario.largura
+                    }
+                    if(camera.y < 0){
+                        camera.y = 0
+                    }
+                    if(camera.y + camera.altura > Cenario.altura){
+                        camera.y = Cenario.altura
+                    }
+                }
+            }
+            sprites.push(Jogador)
+
+            // Centralizar o jogador.
+            Jogador.x = (Cenario.largura - Jogador.largura) / 2
+            Jogador.y = (Cenario.altura - Jogador.altura) / 2
+
+
+            const camera = {
+                x: 0,
+                y: 0,
+                largura: cnv.width,
+                altura: cnv.height,
+                limiteEsquerdo: function(){
+                    return camera.x + (camera.largura * 0.25)
+                },
+                limiteDireito: function(){
+                    return camera.x + (camera.largura * 0.75)
+                },
+                limiteSuperior: function(){
+                    return camera.y + (camera.altura * 0.25)
+                },
+                limiteInferior: function(){
+                    return camera.y + (camera.altura * 0.75)
+                }
+            }
+
+            //Centralizar a camera no cenário.
+            camera.x = (Cenario.largura - camera.largura) / 2
+            camera.y = (Cenario.altura - camera.altura) / 2
+
+
+            function renderizar(){
+                
+                // Salva o contexto de renderização.
+                ctx.save()
+
+                // Muda o contexto de renderização da camera.
+                // Faz com que o cenário seja desenhado em função
+                // da câmera.
+                ctx.translate(-camera.x,-camera.y)
+
+                for(let i in sprites){
+                    sprites[i].desenhar()
+                }
+
+                // Restaura as configurações originais.
+                ctx.restore()
+            }
+
+            function atualizar(){
+                Jogador.mover()
+            }
+
+            function loop(){
+                requestAnimationFrame(loop,cnv)
+                atualizar()
+                renderizar()
+            }
+
+            window.addEventListener("keydown",Controle.pressionarTecla)
+            window.addEventListener("keyup",Controle.liberarTecla)
+            
+            // Centralizar a câmera.
+
+
+            requestAnimationFrame(loop,cnv)
+
+        }
+    </script>
+</head>
+<body>
+    <canvas width="300" height="300" id="palco"></canvas>
+</body>
+</html>

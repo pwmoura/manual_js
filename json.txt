@@ -1,0 +1,54 @@
+ESTUDO DE JSON EM JS:
+=====================
+
+modelo:
+-------
+
+    var db_json = {
+
+        "usuarios": [
+                        {"nome":"moura","email":"wmm.moura@gmail.com","idade":"37"},
+                        {"nome":"maria","email":"maria@site.com.br","idade":"25"},
+                        {"nome":"maria","email":"maria@site.com.br","idade":"25"},
+                        {"nome":"maria","email":"maria@site.com.br","idade":"25"}
+        ],
+
+        "artigos": [
+                        {"titulo":"Título 1","descricao":"Descrião 01","data":"10-11-2018","hora":"20:12:20","img":"0.jpg"},
+                        {"titulo":"Título 2","descricao":"Descrião 02","data":"11-11-2018","hora":"21:12:20","img":"1.jpg"},
+                        {"titulo":"Título 2","descricao":"Descrião 02","data":"11-11-2018","hora":"21:12:20","img":"1.jpg"},
+                        {"titulo":"Título 2","descricao":"Descrião 02","data":"11-11-2018","hora":"21:12:20","img":"1.jpg"},
+                        {"titulo":"Título 2","descricao":"Descrião 02","data":"11-11-2018","hora":"21:12:20","img":"1.jpg"},
+                        {"titulo":"Título 2","descricao":"Descrião 02","data":"11-11-2018","hora":"21:12:20","img":"1.jpg"}
+        ]
+        
+    }
+
+# Contando os registros.
+------------------------
+Retorna a quantidade de registros o json possui.
+
+    js:
+        document.body.innerHTML = db_json.usuarios.length
+
+    Retorno html:
+        4
+
+
+# Imprimindo json na tela:
+--------------------------
+
+    <script>
+        var i = 0
+        var txt;
+        var div = document.getElementsByClassName("json")[0]
+
+        while (db_json.usuarios[i]) {
+            txt = div.innerHTML
+            div.innerHTML =     
+                txt + "Nome: " + db_json.usuarios[i].nome + "<br>" +
+                "E-mail: " + db_json.usuarios[i].email + "<br>" +
+                "Idade: " + db_json.usuarios[i].idade + "<br><hr>"
+            i++
+        }                
+    </script>

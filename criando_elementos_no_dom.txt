@@ -1,0 +1,273 @@
+Criando elementos no DOM
+========================
+
+write
+-----
+Método para escrever no dom. Cria conteúdo completamente inacessível para dispositivos não visuais, como um leitor de tela. Por essa razão, de acordo com os Padrões Web, usar esse
+método em scripts requer uma análise acurada e deve se restringir a casos muito específicos. Como regra geral, evite utilizá-lo.
+    
+    Exemplo 1:
+    document.write("<p>Alô mundo<br />Cheguei.</p>");
+
+
+writeln
+-------
+Método semelhante ao método write(), com a diferença que acrescenta um caractere de nova linha ao final do conteúdo inserido. Em marcação HTML, pular uma linha não causa renderização em nova linha (sabemos que para
+pular uma linha, devemos usar o elemento br). Assim, o efeito prático de writeln() é o mesmo de write().
+    
+    Exemplo 1:
+    document.writeln("<p>Alô mundo<br />Cheguei.</p>");
+
+
+.innerHTML
+----------
+Proprieades que altera o altera o conteúdo html, pode inserir tags completas de html em um elemento do DOM.
+
+    Exemplo:
+    document.getElementById("demo").innerHTML = "Hello World!";
+
+
+.textContent
+------------
+Propriedade que altera o texto dentro de um elemento html (não aceita tags html como conteúdo).
+    var myHeading = document.querySelector('h1');
+    myHeading.textContent = 'Hello world!';
+
+.className
+----------
+Propriedade class do elemento do DOM.
+<p>Este é um parágrafo!</p>
+    <script>
+        p = document.getElementsByTagName("p")[0]
+        p.className = "texto1"
+    </script>
+
+
+.createElement()
+---------------
+Método que cria tag html.
+
+    <script>
+
+        // 1. criou-se o elemento
+        h1 = document.createElement("h1")
+        
+        //2. Criou o conteúdo do nó.
+        txt = document.createTextNode("Olá")
+
+        //3. Coloca o nó dentro da tag.
+        h1.appendChild(txt)
+
+        //4. Coloca o elemento no DOM.
+        document.getElementsByTagName("body")[0].appendChild(h1)
+        
+    </script>
+
+
+.createTextNode()
+-----------------
+Método que cria os nós (somente texto) para ser colocado em algum elemento. Se tags forem colocadas nesse elemento ele transformará em texto.
+    <script>
+
+        // 1. criou-se o elemento
+        h1 = document.createElement("h1")
+        
+        //2. Criou o conteúdo do nó.
+        txt = document.createTextNode("Olá")
+
+        //3. Coloca o nó dentro da tag.
+        h1.appendChild(txt)
+
+        //4. Coloca o elemento no DOM.
+        document.getElementsByTagName("body")[0].appendChild(h1)
+        
+    </script>
+
+
+.appendChild()
+--------------
+Método que adiciona uma tag html a um elemento do DOM. A tag é colocada logo abaixo.
+
+    <script>
+
+        // 1. criou-se o elemento
+        h1 = document.createElement("h1")
+        
+        //2. Criou o conteúdo do nó.
+        txt = document.createTextNode("Olá")
+
+        //3. Coloca o nó dentro da tag.
+        h1.appendChild(txt)
+
+        //4. Coloca o elemento no DOM.
+        document.getElementsByTagName("body")[0].appendChild(h1)
+        
+    </script>
+
+
+.removeChild()
+---------------
+Método que remove um elemento filho de elemento html.
+    <p>Este é um parágrafo!</p>
+    <script>
+        let body = document.getElementsByTagName('body')[0]
+        let p = document.querySelector("p")
+        body.removeChild(p)
+    </script>
+
+
+.replaceChild(element)
+----------------------
+Substitua um elemento HTML: document.replaceChild(element)
+
+
+			.replaceChild(element)
+			----------------------
+			Substitua um elemento HTML: document.replaceChild(element)
+
+
+			.createAttribute("nomeDoAtributo")
+			----------------------------------
+			Seleciono o elemento que pretento anexar o atributo.
+			Declaro por meio do Creat Attribute o nome do novo atributo (class, id, src, title, dentre outros).
+			
+				Ex.:
+
+					<!DOCTYPE html>
+					<html lang="pt-br">
+					<head>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<meta http-equiv="X-UA-Compatible" content="ie=edge">
+						<title>Criando atributos em tags html</title>
+						<link rel="stylesheet" href="css/md.css">
+						<style>
+							body{
+								text-align: center;
+							}
+							.ligado{
+								color: red;
+							}
+							
+						</style>
+					</head>
+					<body>
+						<h1>Esse é um elemento que irá ser mudado</h1>
+						<p class="mt-10"> <a onclick="ligar()" class="bt-1">Ligar (colocar a classe)</a></p>
+						<script>
+							function ligar(){
+								var h1 = document.getElementsByTagName("h1")[0] //seleciona o elemento h1.
+								var att = document.createAttribute("class") //cria o atributo class.
+								att.value = "ligado" // Passa o valor da classe.
+								h1.setAttributeNode(att) //Coloca o atributo no h1.
+							}
+						</script>
+					</body>
+					</html>
+
+
+			.setAttributeNode()
+			-------------------
+			Coloca o atributo na tag. Como no exempolo acima:
+
+				Ex.:
+
+					<!DOCTYPE html>
+					<html lang="pt-br">
+					<head>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<meta http-equiv="X-UA-Compatible" content="ie=edge">
+						<title>Criando atributos em tags html</title>
+						<link rel="stylesheet" href="css/md.css">
+						<style>
+							body{
+								text-align: center;
+							}
+							.ligado{
+								color: red;
+							}
+							
+						</style>
+					</head>
+					<body>
+						<h1>Esse é um elemento que irá ser mudado</h1>
+						<p class="mt-10"> <a onclick="ligar()" class="bt-1">Ligar (colocar a classe)</a></p>
+						<script>
+							function ligar(){
+								var h1 = document.getElementsByTagName("h1")[0] //seleciona o elemento h1.
+								var att = document.createAttribute("class") //cria o atributo class.
+								att.value = "ligado" // Passa o valor da classe.
+								h1.setAttributeNode(att) //Coloca o atributo no h1.
+							}
+						</script>
+					</body>
+					</html>
+
+
+
+			Alterando atributos existentes:
+			-------------------------------
+			element.attribute = new value;
+			document.getElementsByTagName("img")[0].src = "/images/2.jpg"
+
+
+			Inserindo texto em um elemento: .innerText = "Texto aqui!"
+			----------------------------------------------------------
+			Pode ser usado também para pegar o texto de uma tag ou alterá-lo.
+			document.getElementById("e1).innerText --> pega o texto do elemento
+			document.getElementById("e1).innerText = "Olá mundo." --> Altera o texto do elemento.
+
+
+			Inserindo código html no documento:
+			-----------------------------------
+			Insere código html entre tags no documento.
+
+				Ex.:
+
+					Head:
+					-----
+					<script>
+						function trocar(){
+							document.getElementById("titulo").innerHTML = "Parabéns, você adicionou o texto!";
+						}
+					</script>
+					
+					
+					Body:
+					-----
+					<h1 id="titulo"></h1>
+					<input type="button" onclick="trocar();" value="Adicionar título"/>
+				
+				
+				
+				Ex.:
+				
+					Head:
+					-----
+					<script>
+						function trocar(){
+							var t1 = document.getElementById("titulo")
+							t1.innerHTML = "Parabéns, você adicionou o texto!";
+						}
+					</script>
+					
+					
+					Body:
+					-----
+					<h1 id="titulo"></h1>
+					<input type="button" onclick="trocar();" value="Adicionar título"/>
+
+
+			Alterando CSS dos elementos do documento:
+			-----------------------------------------
+			element.style.property = "new style";
+			document.getElementById("titulo").style.color = "#000"
+
+
+
+	Referências:
+	------------
+	  1. W3chool: http://www.w3schools.com/js/js_htmldom_document.asp
+
+

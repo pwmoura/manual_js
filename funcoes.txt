@@ -1,0 +1,55 @@
+﻿DECLARANDO FUNÇÕES
+==================
+
+Exemplo 01:
+----------
+Nesse exemplo, ao clicar no botão um alerta será emitido.
+
+	head:
+	-----
+	<script>
+		function alerta(){
+			alert("Boa tentativa!");
+		}
+	</script>
+	
+	body:
+	-----
+	<input type="text" onclick="alerta();" value="Alerta" />
+
+
+Exemplo 02:
+-----------
+Ao clicar no botão aparecera o quociente da divisão. Nesse exemplo tempos o usuo de parâmetros.
+
+  Head:
+  -----
+	<script>
+        function dividir(dividendo,divisor){
+			var vN1 = +dividendo;
+			var vN2 = +divisor;
+			var quociente = vN1 / vN2;
+			alert(quociente);
+		}
+    </script>
+
+
+  Body:
+  -----
+	<input type="button" onclick="dividir(7,3);" value="Alerta" />
+
+
+Exemplo 03:
+-----------
+Nesse exemplo a função retornará o resultado.
+
+	<script>
+        function dividir(dividendo,divisor){
+			var vN1 = +dividendo;
+			var vN2 = +divisor;
+			var quociente = vN1 / vN2;
+			return quociente;
+		}
+		alert(dividir(9,3));
+    </script>
+

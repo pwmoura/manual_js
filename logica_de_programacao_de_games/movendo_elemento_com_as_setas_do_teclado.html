@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colisão - Movendo elementos com as setas do teclado</title>
+    <style>
+        canvas{
+            display: block;
+            margin: 0 auto;
+            margin-top: 50px;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="640" height="400" id="palco"></canvas>
+    <script>
+
+        // [Variáveis/Constantes]
+        let cnv = document.getElementById("palco")
+        let ctx = cnv.getContext("2d")
+
+
+        // [Coleção de Arrays]
+        let sprites = [] // --> tudo que for desenhavel
+        let blocks = [] // --> tudo que será sólido.
+
+
+        // [Objetos]
+        const Controle = {
+            cima: 38,
+            baixo: 40,
+            esquerda: 37,
+            direita: 39,
+            enter: 13,
+            presCima: false,
+            presBaixo: false,
+            presDireita: false,
+            presEsquerda: false,
+            presEnter: false,
+            pressionarTecla(tecla){
+                let codigoDaTecla = tecla.keyCode
+                if(codigoDaTecla === Controle.esquerda && codigoDaTecla !== Controle.direita){
+                    Controle.presEsquerda = true
+                }
+                if(codigoDaTecla === Controle.direita && codigoDaTecla !== Controle.esquerda){
+                    Controle.presDireita = true
+                }
+                if(codigoDaTecla === Controle.cima && codigoDaTecla !== Controle.baixo){
+                    Controle.presCima = true
+                }
+                if(codigoDaTecla === Controle.baixo && codigoDaTecla !== Controle.cima){
+                    Controle.presBaixo = true
+                }
+                if(codigoDaTecla === Controle.enter){
+                    Controle.presEnter = true
+                }
+            },
+            liberarTecla(tecla){
+                let codigoDaTecla = tecla.keyCode
+                if(codigoDaTecla === Controle.esquerda && codigoDaTecla !== Controle.direita){
+                    Controle.presEsquerda = false
+                }
+                if(codigoDaTecla === Controle.direita && codigoDaTecla !== Controle.esquerda){
+                    Controle.presDireita = false
+                }
+                if(codigoDaTecla === Controle.cima && codigoDaTecla !== Controle.baixo){
+                    Controle.presCima = false
+                }
+                if(codigoDaTecla === Controle.baixo && codigoDaTecla !== Controle.cima){
+                    Controle.presBaixo = false
+                }
+                if(codigoDaTecla === Controle.enter){
+                    Controle.presEnter = false
+                }                
+            }
+        }
+
+
+        // [Funções construtoras]
+        let Sprite = function(x, y, largura, altura, cor){
+            this.x = x
+            this.y = y
+            this.largura = largura
+            this.altura = altura
+            this.cor = cor
+            this.visivel = true
+        } 
+
+        // [Criação de blocos]
+        let personagem = new Sprite(0,0,34,34,"yellow")
+        personagem.velocidade = 4
+        sprites.push(personagem)
+
+        let bloco1 = new Sprite(120,300,40,80,"red")
+        sprites.push(bloco1)
+
+        let bloco2 = new Sprite(400,150,100, 50, "black")
+        sprites.push(bloco2)
+
+
+        // [Funções Principais]
+        function renderizar(){
+            ctx.clearRect(0, 0, cnv.width, cnv.height)
+            for(let i in sprites){
+                let sprite = sprites[i]
+                if(sprite.visivel){
+                    ctx.fillStyle = sprite.cor
+                    ctx.fillRect(
+                        sprite.x,
+                        sprite.y,
+                        sprite.largura,
+                        sprite.altura
+                    )
+                }
+            }
+        } 
+        function atualizar(){
+            mover()
+        }
+        function loop(){
+            window.requestAnimationFrame(loop,cnv)
+            atualizar()
+            renderizar()
+        }
+
+
+        // [Funções auxiliares]
+
+        function mover(){
+            if(Controle.presCima){
+                personagem.y = personagem.y - personagem.velocidade 
+            }
+            if(Controle.presBaixo){
+                personagem.y = personagem.y + personagem.velocidade
+            }
+            if(Controle.presEsquerda){
+                personagem.x = personagem.x - personagem.velocidade
+            }
+            if(Controle.presDireita){
+                personagem.x = personagem.x + personagem.velocidade
+            }
+
+        }
+
+
+        // [Entradas de eventos]
+        window.addEventListener("keydown",Controle.pressionarTecla,false)
+        window.addEventListener("keyup",Controle.liberarTecla,false)
+        
+        
+        // [Linha de comando]
+        window.requestAnimationFrame(loop,cnv)
+  
+    </script>
+</body>
+</html>

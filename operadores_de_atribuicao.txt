@@ -1,0 +1,15 @@
+Operadores de Atribuição de JavaScript:
+======================================
+ =     x = y     x = y
++=    x += y     x = x + y
+-=    x -= y	 x = x - y
+*=    x *= y	 x = x * y
+/=    x /= y	 x = x / y
+%=    x %= y	 x = x % y
+
+Exemplo:
+--------
+var x = 10;
+x += 5;
+
+Resultado: 15.

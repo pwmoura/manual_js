@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de um jogo - Lógica para criação de tiles</title>
+    <script>
+
+        window.onload = function(){
+
+
+            // [Declaração das variáveis]
+            let Canvas, Tiles, cnv, ctx, fase1
+
+
+            // [Matrizes que modelam as fazes do jogo]
+            fase1 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1],
+                [1,1,1,0,1,1,0,0,0,0,1,0,1,0,0,0,0,0,1],
+                [1,0,0,0,0,1,0,1,1,1,1,1,1,0,1,1,1,1,1],
+                [1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,1,0,0,1,1,1,1,1,1,1,1,1,0,1],
+                [1,0,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1],
+                [1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1],
+                [1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1],
+                [1,0,0,1,0,0,1,0,0,0,0,1,1,1,1,0,1,1,1],
+                [1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1],
+                [1,0,0,1,0,0,1,1,1,0,1,1,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1],
+                [1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ]
+
+            // [Galeria de objetos do jogo]
+
+            Canvas = {
+
+                // [Objeto Canvas]
+                // Gera a tag <canvas> no html.
+                // Gera a variável cnv.
+                // Gera a variável ctx.
+
+                local: document.getElementsByTagName("body")[0],
+                largura: "608",
+                altura: "608",
+                borda: "1px solid #000000",
+                margem: "0 auto",
+                display: "block",
+
+                construir(){
+                    let tag = document.createElement("canvas")
+                    tag.width = this.largura
+                    tag.height = this.altura
+                    tag.style.border = this.borda
+                    tag.style.margin = this.margem
+                    tag.style.display = this.display
+                    this.local.appendChild(tag)
+                    cnv =  tag
+                    ctx = cnv.getContext("2d")
+                }
+
+            }
+
+
+            Tiles = {
+
+                // [Objeto tiles]
+                // Gera o cenário do jogo.
+
+                x: 0,
+                y: 0,
+                largura: 32,
+                altura: 32,
+                labirinto: fase1,
+
+                desenhar(){
+                    for(let linha in Tiles.labirinto){
+                        for(let coluna in Tiles.labirinto[linha]){
+                            let tile = Tiles.labirinto[linha][coluna]
+                            if( tile === 1){
+                                let x = coluna * Tiles.largura
+                                let y = linha * Tiles.altura
+                                ctx.fillRect(
+                                    x,
+                                    y,
+                                    Tiles.largura,
+                                    Tiles.altura
+                                )
+                            }
+                        }
+                    }
+                }
+
+            }
+
+
+            function renderizar(){
+
+                // [Renderiza/desenha os elementos do jogo]
+                Tiles.desenhar()
+
+            }
+
+            function atualizar(){
+
+                // [Atualiza os elementos do jogo]
+
+            }
+
+            function loop(){
+
+                // [Cria a troca de quadros do jogo: 60 quadros/s aproximadamente]
+                atualizar()
+                renderizar()
+                requestAnimationFrame(loop,cnv)
+
+            }
+
+            // [Linha de comando]
+            Canvas.construir()
+            requestAnimationFrame(loop,cnv)
+
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

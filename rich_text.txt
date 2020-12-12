@@ -1,0 +1,279 @@
+rich_text:
+----------
+É uma forma de tornar um documento editável para o usuário. São aqueles editores que podem ser usados para criar e-mails, artigos, comentários. Esses editores podem ser feitos em JS com código próprio e bem originais.
+
+    Tornado uma parte do documento editável:
+    ----------------------------------------
+    
+
+        Ex.:
+        Nesse exemplo colocaremos uma div editável.
+
+            //Adiciona um evento ao iniciar a janela. e executa a função liga_editor()
+            window.addEventListener("load",liga_editor)
+            
+            //Seleciona a div pelo ID e depois liga sua edição para o usuário.
+            function liga_editor(){
+                let div_editavel = document.getElementById("editor")
+                div_editavel.contentEditable = "true"
+            }
+
+        Ex.: 
+        Pode ser colocado  inline no HTML:
+        
+        //Coloca o elemento editável.
+        <div contenteditable="true">
+            This text 
+            can be edited!
+        </div>        
+
+
+    Tornando todo o documento editável:
+    -----------------------------------
+    Nesse exemplo todo o documento pode ser modificado pelo usuário.
+        
+        //Adiciona um evento ao iniciar a janela. e executa a função liga_edicao()
+        window.addEventListener("load",liga_editor)
+        
+        //Função que liga a edição no documento inteiro.
+        function liga_edicao(){
+            document.designMode = "on"
+        }
+    
+
+    .execCommand(comando,true|false,valor):
+    ---------------------------------------
+    Função que manipula os elementos selecionados pelo usuário. Ela recebe três parâmetros:
+        comando --> é tipo do comando que ele pode receber.
+        true | false --> vc dá um dos valores para mostrar a interface para o usuário ou não.
+        valor --> alguns comandos necessitam de valores: tipo da fonte, código da cor de fundo ou do texto, ou url do link.
+    
+
+    Negrito:
+    --------
+    Criando o botão de negrito.
+
+        Ex.:
+        Esse é o modelo inline. Mistura js com html.
+            Html:
+            <button onclick="altera('bold')">Negrito</button> 
+
+            js:
+            function altera(comando){
+                document.execCommand(comando, false, null)
+            }
+        
+        Ex.:
+        Esse é o modelo não inline, separado js e html.
+            html:
+            <button class="bt-1" id="bt-negrito" title="Negrito"><i class="material-icons">format_bold</i></button>
+
+            js:
+            negrito = document.getElementById("bt-negrito")
+            negrito.addEventListener("click",function(){altera("bold",null)},false)
+            function altera(comando,valor){
+                document.execCommand(comando, false, valor)
+            }
+
+    Para outros exemplos de botões troque o parâmetro bold na função altera():
+    ----------------------------------------------------------------
+    
+        Apenas um comando, com valor null:
+            italic --> texto itálico
+            justifyCenter --> centraliza o texto.
+            justifyLeft --> alinha o texto a esquerda.
+            justifyRight --> alinha o texto a direita.
+            justifyFull --> texto justificado.
+            copy --> copiar texto.
+            cut --> recortar texto.
+            indent --> recuo
+            outdent --> voltar recuo
+            subscript --> subscrito
+            superscript --> sobrescrito
+            undo --> voltar (ctlr+z).
+            redo --> ir (contrário do undo).
+            insertUnorderedList --> lista não ordenada.
+            insertOrderedList --> lista ordenada.
+            insertHorizontalRule --> linha horizontal
+            unlink --> Remove o link do objeto.
+
+
+            backColor
+            Altera a cor de fundo do documento. No styleWithCssmodo, isso afeta a cor de fundo do bloco de contenção. Isso requer que uma <color>cadeia de valor seja passada como um argumento de valor. Observe que o Internet Explorer usa isso para definir a cor do plano de fundo do texto.
+
+            bold
+            Ativa ou desativa o negrito para a seleção ou no ponto de inserção. O Internet Explorer usa a <strong>tag em vez de <b>.
+
+            ClearAuthenticationCache
+            Limpa todas as credenciais de autenticação do cache.
+
+            contentReadOnly
+            Torna o documento de conteúdo somente leitura ou editável. Isso requer um booleano verdadeiro / falso como o argumento de valor. (Não suportado pelo Internet Explorer.)
+
+            copy
+            Copia a seleção atual para a área de transferência. As condições de ter esse comportamento ativado variam de um navegador para outro e evoluíram com o tempo. Verifique a tabela de compatibilidade para determinar se você pode usá-la no seu caso.
+
+            createLink
+            Cria um hiperlink da seleção, mas somente se houver uma seleção. Requer uma string URI como um argumento de valor para o hyperlink href. O URI deve conter pelo menos um único caractere, que pode ser um espaço em branco. (Internet Explorer irá criar um link com um nullvalor.)
+
+            cut
+            Remove a seleção atual e copia-a para a área de transferência. Quando esse comportamento é ativado, varia entre os navegadores e suas condições evoluíram com o tempo. Verifique a tabela de compatibilidade para detalhes de uso.
+
+            decreaseFontSize
+            Adiciona uma <small>tag ao redor da seleção ou no ponto de inserção. (Não suportado pelo Internet Explorer.)
+
+            defaultParagraphSeparator
+            Altera o separador de parágrafo usado quando novos parágrafos são criados em regiões de texto editáveis. Veja Diferenças na geração de marcação para mais detalhes.
+
+            delete
+            Exclui a seleção atual.
+
+            enableAbsolutePositionEditor
+            Ativa ou desativa a garra que permite mover elementos absolutamente posicionados. Isso está desabilitado por padrão no Firefox 63 Beta / Dev Edition ( bug 1449564 )
+
+            enableInlineTableEditing
+            Ativa ou desativa os controles de inserção e exclusão de linha / coluna da tabela. Isso está desabilitado por padrão no Firefox 63 Beta / Dev Edition ( bug 1449564 ).
+
+            enableObjectResizing
+            Ativa ou desativa as alças de redimensionamento em imagens, tabelas e elementos posicionados em absoluto e outros objetos redimensionáveis. Isso está desabilitado por padrão no Firefox 63 Beta / Dev Edition ( bug 1449564 ).
+
+            fontName
+            Altera o nome da fonte para a seleção ou no ponto de inserção. Isso requer uma cadeia de nome de fonte (como "Arial") como um argumento de valor.
+
+            fontSize
+            Altera o tamanho da fonte para a seleção ou no ponto de inserção. Isso requer um inteiro de 1- 7como um argumento de valor.
+
+            foreColor
+            Altera uma cor de fonte para a seleção ou no ponto de inserção. Isso requer uma string de valor de cor hexadecimal como um argumento de valor.
+
+            formatBlock
+            Adiciona um elemento de nível de bloco HTML ao redor da linha que contém a seleção atual, substituindo o elemento de bloco que contém a linha, se existir (no Firefox, <blockquote>é a exceção - ele irá quebrar qualquer elemento de bloco contendo). Requer uma string de nome de tag como um argumento de valor. Praticamente todos os elementos de nível de bloco podem ser usados. (Internet Explorer e apoio Borda única tags de cabeçalho H1- H6, ADDRESSe PREque deve ser envolto em colchetes, tais como "<H1>".)
+
+            forwardDelete
+            Exclui o caractere à frente da posição do cursor , idêntico a pressionar a tecla Delete em um teclado do Windows.
+
+            heading
+            Adiciona um elemento de título ao redor de uma linha de seleção ou ponto de inserção. Requer a string de nome da tag como um argumento de valor (ou seja "H1", "H6"). (Não suportado pelo Internet Explorer e Safari.)
+
+            hiliteColor
+            Altera a cor do plano de fundo para a seleção ou no ponto de inserção. Requer uma string de valor de cor como um argumento de valor. useCSSdeve ser truepara isso funcionar. (Não suportado pelo Internet Explorer.)
+
+            increaseFontSize
+            Adiciona uma <big>tag ao redor da seleção ou no ponto de inserção. (Não suportado pelo Internet Explorer.)
+
+            indent
+            Recua a linha que contém o ponto de seleção ou inserção. No Firefox, se a seleção ocupar várias linhas em diferentes níveis de recuo, somente as linhas menos recuadas na seleção serão recuadas.
+
+            insertBrOnReturn
+            Controla se a tecla Enter insere um <br>elemento ou divide o elemento de bloco atual em dois. (Não suportado pelo Internet Explorer.)
+
+            insertHorizontalRule
+            Insere um <hr>elemento no ponto de inserção ou substitui a seleção por ele.
+
+            insertHTML
+            Insere uma string HTML no ponto de inserção (exclui a seleção). Requer uma string HTML válida como um argumento de valor. (Não suportado pelo Internet Explorer.)
+
+            insertImage
+            Insere uma imagem no ponto de inserção (exclui a seleção). Requer uma string de URL para o srcargumento da imagem como um valor. Os requisitos para esta cadeia são os mesmos que createLink.
+
+            insertOrderedList
+            Cria uma lista ordenada numerada para a seleção ou no ponto de inserção.
+
+            insertUnorderedList
+            Cria uma lista não ordenada com marcadores para a seleção ou no ponto de inserção.
+
+            insertParagraph
+            Insere um parágrafo em torno da seleção ou da linha atual. (O Internet Explorer insere um parágrafo no ponto de inserção e exclui a seleção.)
+
+            insertText
+            Insere o texto simples fornecido no ponto de inserção (exclui a seleção).
+
+            italic
+            Ativa / desativa itálico para a seleção ou no ponto de inserção. (Internet Explorer usa o <em>elemento em vez de <i>.)
+
+            justifyCenter
+            Centraliza o ponto de seleção ou inserção.
+
+            justifyFull
+            Justifica a seleção ou o ponto de inserção.
+
+            justifyLeft
+            Justifica a seleção ou o ponto de inserção à esquerda.
+
+            justifyRight
+            Justifica à direita a seleção ou o ponto de inserção.
+
+            outdent
+            Outdents a linha que contém o ponto de seleção ou inserção.
+
+            paste
+            Cola o conteúdo da área de transferência no ponto de inserção (substitui a seleção atual). Desativado para conteúdo da web. Veja [1].
+
+            redo
+            Refaz o comando desfazer anterior.
+
+            removeFormat
+            Remove toda a formatação da seleção atual.
+
+            selectAll
+            Seleciona todo o conteúdo da região editável.
+
+            strikeThrough
+            Ativa / desativa o recurso de riscado para a seleção ou no ponto de inserção.
+
+            subscript
+            Ativa / desativa o índice para a seleção ou no ponto de inserção.
+
+            superscript
+            Ativa / desativa o sobrescrito para a seleção ou no ponto de inserção.
+
+            underline
+            Ativa / desativa o sublinhado para a seleção ou no ponto de inserção.
+
+            undo
+            Anula o último comando executado.
+
+            unlink
+            Remove o elemento de âncora de um hiperlink selecionado.
+
+            useCSS 
+            Alterna o uso de tags HTML ou CSS para a marcação gerada. Requer um booleano verdadeiro / falso como um argumento de valor.
+            NOTA: Este argumento é logicamente ao contrário (ou seja, usa falsepara usar CSS, truepara usar HTML) e não é suportado pelo Internet Explorer. Isso foi preterido em favor de styleWithCSS.
+
+            styleWithCSS
+            Substitui o useCSScomando. truemodifica / gera styleatributos na marcação, false gera elementos de apresentação.            
+        
+        
+        Dois parâmetros: comando e valor. Precisa informar o novo valor diferente de null além do comando.
+        ---------------------------------    
+            createLink --> passa o valor da URL no lugar do valor. Veja o exemplo:
+                function cria_link(){
+                    let l = prompt("url do link...")
+                    document.execCommand("createLink", false, l)
+                }
+            
+            formatBlock --> passa o valor do cabeçalho: h1, h2, h3...
+                
+                html:
+                    <select class="select-1" name="" id="bt-cabecalhos">
+                        <option value="h1">H1</option>
+                        <option value="h2">H2</option>
+                        <option value="h3">H3</option>
+                        <option value="h4">H4</option>
+                        <option value="h5">H5</option>
+                        <option value="h6">H6</option>
+                    </select>
+                
+                js:
+                window.addEventListener("load",liga_editor)
+                cabecalhos = document.getElementById("bt-cabecalhos")
+                cabecalhos.addEventListener("click",function(){altera('formatBlock',this.value)},false)
+                function altera(comando,valor){
+                    document.execCommand(comando, false, valor)
+                }
+                function liga_editor(){
+                    div_editavel.contentEditable = "true"
+                }
+
+
+

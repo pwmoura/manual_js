@@ -1,0 +1,90 @@
+document.getElementById("nomeDoId")
+-----------------------------------
+Seleciona um elemento com um ID específico no Dom. Formulário também pode ser acessado pelo atributo name de cada tag.
+
+    Exemplo:
+    function inserir(){
+        var formulario = document.getElementById("formulario");
+        formulario.ctest.value=10;
+    }
+
+
+getElementsByClassName(nameDaClasse)
+------------------------------------
+Seleciona elementos de uma determinada classe.
+    
+    Ex.:
+    Acessando por indice:
+    <script type="text/javascript">
+        console.log(
+            document.getElementsByClassName("urso")[0]
+        )
+    </script>
+
+    Ex.:
+    Acessando e modificando várias classes ao mesmo tempo:
+    <div class="urso">ruuu</div>
+    <div class="urso">ruuu</div>
+    <div class="urso">ruuu</div>
+    <div class="sherk">faz urruuu</div>
+    <div class="sherk">faz urruuu</div>
+    <div class="sherk">faz urruuu</div>
+    <div class="sherk">faz urruuu</div>
+
+
+    <script type="text/javascript">
+
+        //declaração das variáveis.
+        var classe = document.getElementsByClassName("urso")
+        var i = 0
+        
+        while(classe[i]){
+            classe[i].innerHTML = "Fui mudado com sucesso!"
+            i++        
+        }
+
+    </script>
+
+    Resultado:
+    Fui mudado com sucesso!
+    Fui mudado com sucesso!
+    Fui mudado com sucesso!
+    faz urruuu
+    faz urruuu
+    faz urruuu
+    faz urruuu
+
+
+getElementsByTagName(name);
+---------------------------
+Seleciona elementos pela tag:
+    
+    <div>
+        <p>Exemplo de um testo 01</p>
+        <p>Exemplo de um testo 02</p>
+        <p>Exemplo de um testo 03</p>
+        <p>Exemplo de um testo 04</p>
+        <p>Exemplo de um testo 05</p>
+    </div>
+
+    <script>
+        p = document.getElementsByTagName("p")
+        i=0
+        while (p[i]) {
+            p[i].innerHTML = "Alteração " + i
+            i++
+        }
+    </script>
+
+
+document.querySelector('nome da tag')
+-------------------------------------
+Procura o primeiro elemento com essa tag no documento.
+    
+    'nomeDaTag' --> Nome da tag.
+    '#nomeDoId' --> Id específico.
+    '.nomeDaClasse' --> classe específica.
+    'div.nomeDaClasse' --> pega por herança também.
+
+
+ 

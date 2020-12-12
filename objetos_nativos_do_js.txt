@@ -1,0 +1,171 @@
+Tipos primitivos
+----------------
+É a forma mais primitiva de informação, não são considerados objetos, são eles: string, number e boolean. Não possuem propriedades e métodos. O js os "transformam" em objetos quando acessamos propriedades ou métodos que são de objetos. Por isso, quando temos que acessar propriedades e métodos de objetos devemos já transformá-los em objetos. 
+
+    Exemplo:
+    Imagine que você vai só mostrar mensagens na tela, então deve usar o tipo primitivo string (sem o new String()), mas se form acessar propriedades e métodos do objeto String deve converter em objeto usando o new String como nos exemplos que seguem, para melhorar o desempenho do projeto evitando que a linguagem fique fazendo isso o tempo todo.
+
+
+Objetos nativos do javascript
+=============================
+
+Object
+------
+Todos os objetos são do tipo Object, sendo esse o dipo de objeto mais genérico da linguagem. Todos os objetos são Arrays, mas nem sempre os tratamos como sendo um.
+
+    typeof()
+    --------
+    Informa o tipo do objeto js.
+    let nome = "Wenys"
+    alert(typeof(nome))
+    Retorna: string
+
+    new nomeDoObjeto
+    ----------------
+    Cria um objeto e depois atribui valor.
+    let nome = new String
+    nome = "Wenys"
+    alert(typeof(nome))
+
+    new nomeDoObjeto(variavelDoNovoObjeto)
+    --------------------------
+    Transforma o valor em objeto.
+    let nome = "Wenys"
+    alert(new String(nome))
+
+
+Boolean
+-------
+O objeto Boolean é diferente do tipo primitivo boolean. Andam de mãos dadas. Deferenciam-se porque o objeto além de possuir a informação primitiva dentro dele, possue: propriedades e métodos. Recebe os dados true ou false.
+
+    Obs.: zero, null, NaN e a string vazia são inerentemente false; todo o resto é inerentemente true.
+
+    O valor false é o valor padrão
+    ------------------------------
+    Ao criar um objeto Boolean sem passar parâmetro ele assume o dado false automaticamente.
+    let casado = new Boolean()
+    alert(casado)
+    Retorna: false
+
+    Valores numéricos
+    -----------------
+    0 --> false
+    1 --> true
+    let casado = new Boolean(0)
+    alert(casado)
+    Retorna: false
+
+    Valores com strings
+    -------------------
+    Se a string for vazia retorna false do contrário retorna true.
+    "" --> false
+    "Qual quer coisa..." --> true
+    let casado = new Boolean("teste")
+    alert(casado)
+    Retona: true
+
+    instanceof
+    ----------
+    Verifica se o elemento possui uma instância do tipo Boolean, ou seja, se é true ou false seu conteúdo.
+    let casado = new Boolean(true)
+    alert(casado instanceof Boolean)
+    Retorna: true
+
+    .valueOf()
+    ----------
+    Retorna o valor do tipo primitivo.
+    let casado = new Boolean(true)
+    alert(casado.valueOf())
+    Retorna: true
+
+    .toString()
+    -----------
+    Retorna o valor Booleano em forma de string.
+    let casado = new Boolean(true)
+    alert(casado.toString())
+    Retorna: "true"
+    
+Number
+------
+O objeto Number é diferente do tipo primitivo number. Andam de mãos dadas. Deferenciam-se porque o objeto além de possuir a informação primitiva dentro dele, possue: propriedades e métodos
+
+    .valueOf()
+    ----------
+    Retorna o valor do tipo primitivo.
+    let casado = new Boolean(true)
+    alert(casado.valueOf())
+    Retorna: true
+    
+    parseInt()
+    ----------
+    Converte string em numero inteiro.
+    let txt = "12" 
+    let numero = parseInt(txt)
+    alert(typeof(numero))
+
+    parseFloat()
+    ------------
+    let txt = "15.50"
+    let numero = parseFloat(txt)
+    alert(typeof(numero))
+
+
+
+String
+------
+O objeto String é diferente do tipo primitivo string. Andam de mãos dadas. Deferenciam-se porque o objeto além de possuir a informação primitiva dentro dele, possue: propriedades e métodos
+
+    .length
+    ------
+    Pode ser usado sem o new String. Retorna a quantidade de letras da string.
+    let nome = new String("Wenys")
+    alert(nome.length)
+    Retorna: 5
+
+    .toUpperCase()
+    --------------
+    Todos os caracteres em maiúculo.
+    let nome = new String("Wenys")
+    alert(nome.toUpperCase())
+    Retorna: 5
+
+    .toString()
+    -----------
+    Retorna o valor Booleano em forma de string.
+    let casado = new Boolean(true)
+    alert(casado.toString())
+    Retorna: "true"
+
+
+
+
+Array
+-----
+Objeto que possui um conjunto de informações, organizadas em linhas e colunas. Sendo que cada célula da matriz funciona como uma variável independente podendo ser acessada por indices que iniciam em 0.
+
+Date
+----
+Objeto utilizado para manipular datas.
+
+Math
+----
+Objeto utilizado para realização de cálculos matemáticos. Possui vários métodos para funções aritiméticas.
+
+RegExp
+------
+Objeto para manipulação de expressões regulares. São utilizados principalmente para validação de informação.
+
+Function
+--------
+Objeto utilizado para criar métodos.
+
+
+Error
+EvalError
+RangeError
+ReferenceError
+SintaxeError
+TypeError
+URIError
+----------
+Objetos utilizados para tratamento de informação e erros.

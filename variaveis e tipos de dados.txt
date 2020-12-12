@@ -1,0 +1,229 @@
+﻿Nomeando variáveis:
+===================
+
+    Caracteres aceitos no ínício
+    ----------------------------
+    Não pode começar com números.
+    Não pode usar palavras reservadas.
+    Maiusculos e minusculos faz diferença.
+    é possível usar acentos.
+    Letras ==> a-z, A-Z;
+    _ --> _nome = "josé"
+    $ ==> é aceito, mas deve ser evitado, pois é usado em bibliotecas js.
+        <script>
+            Total_geral = 892
+			$bola = 1524
+        </script>
+
+
+    Caracteres aceitos no meio
+    --------------------------
+    Letras ==> a-z, A-Z;<br />
+    números ==> 0-9..
+		<script>
+            bolaGrande = 85
+			bola1 = 12.96
+        </script>
+
+
+
+Declaração de variáveis:
+========================
+    
+    var --> variável local. [deixa escapar valores em funções]
+    let --> variável local. [não deixa escapar valores em funções]
+
+    Variáveis Locais - Linhas separadas
+    -----------------------------------
+    São variáveis disponíveis somente em funções ou scripts locais, não ficam disponíveis apra todo o documento, antes delas vem o var (agora usa-se o let). Exemplo de declarção em linhas separadas para cada variável.
+
+        Ex.:
+            <script>
+                var bola = "brinquedo"
+                var carro = "meio de transporte"
+                
+                document.write("<br />A bola é um "+bola)
+                document.write("<br />O carro é um "+carro)
+            </script>
+
+        Ex.:
+            <script>
+                //valor a uma variável local.
+                var anoNasc = prompt("Que ano você nasceu?");
+                
+                //Pega o ano atual.
+                data = new Date(); //pega toda a data.
+                anoAtual = data.getFullYear();//retorna o ano.
+                        
+                //Calcula a idade do usuário.
+                var idade = anoAtual - anoNasc;
+                
+                //Escrevendo a idade na tela.
+                window.document.write('Sua idade é '+ idade+' anos');
+            </script>
+
+    Variáveis Locais - Mesma linha
+    ------------------------------
+    São variáveis disponíveis somente em funções ou scripts locais, não ficam disponíveis apra todo o documento, antes delas vem o var (agora o let). Todas as variáveis são declaradas na mesma linha.
+
+    <script>
+		var bola = "brinquedo", carro = "meio de transporte"
+            document.write("<br />A bola é um "+bola)
+        document.write("<br />O carro é um "+carro)
+    </script>
+
+
+    Variáveis globais - Linhas separadas
+    ------------------------------------
+    Declaração de variáveis globais em linha separada.
+        Ex.:
+            <script>
+                n1 = 5
+                n2 = 5
+                n3 = 5
+            <script>
+        
+        Ex.:
+            <script type="text/javascript">
+                
+                //variáveis:
+                n1 = 40;
+                n2 = 80;
+                n3 = 10;
+                media = (n1 + n2 + n3)/3;
+
+                //Escrita na tela.
+                window.document.write(
+                "A média é: " + media);
+            </script>
+
+        Ex.:
+            <script>
+            
+                //valor a uma variável local.
+                idade = prompt("Qual a sua idade?");
+                
+                //Escrevendo a idade na tela.
+                window.document.write('Idade é '+ idade+' anos');
+                
+            </script>
+        
+    Variáveis globais - mesma linha
+    -------------------------------
+    Declaração de variáveis globais em mesma linha.
+        <script>
+            n1 = 5, n2 = 5, n3 = 5
+        <script>
+
+
+Tipos de variáveis:
+===================
+    comando: typove --> mostra o tipo de variável.
+    var price1 = (int)5; --> transforma em inteiro.
+
+    Atribuindo valores:
+    -------------------
+        a1 = carro1 --> variável a1 recebe carro1.
+        a1 = carro2 --> variável a1 recebe carro2.
+        a1 = null --> anulou o valor (vazio).
+    
+
+    Strings:
+    --------
+    São informações de texto (caracteres).
+
+        Formas de delimitar uma string:
+        -------------------------------
+            a1 = "Wenys" --> aspas duplas.
+            a2 = 'José' --> aspas simples.
+            a3 = `Maria` --> crase.
+    
+    Number:
+    ---------
+        length = 16;    // Number
+        idade = 20
+        valor = -8
+        valor = 0.5
+        pi = 3.14
+    
+    Boolean:
+    --------
+        presente = false
+        alegre = true
+    
+    Array:
+    ------
+        var cars = ["Saab", "Volvo", "BMW"];           // Array
+    
+
+    Objcte
+    ------
+    var x = {firstName:"John", lastName:"Doe"};    // Object
+
+
+
+    Exemplo:
+    --------
+    var x;               // Variável não definida.
+    var x = 5;           // Variável numérica.
+    var x = "John";      // String.
+    var x = true;        // booleans.
+    var y = false;       // booleans.
+    var person;          // undefined.
+    var person = null;   // null.
+
+
+Tratamento de tipos de variáveis:
+=================================
+
+    # string em inteiro: parseInt()
+    -------------------------------
+
+        Exemplo 01:
+        -----------
+            <script type="text/javascript">
+                //var bola int;
+                var n1 = prompt();
+                var n1conver = parseInt(n1);
+                var n2 = prompt();
+                var n2conver = parseInt(n2);
+                var total = n2conver + n1conver;
+                alert(total);
+            </script>
+        
+        Exemplo 02:
+        ------------
+            <script type="text/javascript">
+                //var bola int;
+                var n1 = prompt();
+                var n1conver = +n1;
+                var n2 = prompt();
+                var n2conver = +n2;
+                var total = n2conver + n1conver;
+                alert(total);
+            </script>
+
+        
+    # string em número decimal: parseFloat()
+    ----------------------------------------
+        Exemplo 01:	
+            var textoFloat = "10.22";
+            var float = parseFloat(textoFloat);
+        
+        Exemplo 02:
+            var textoFloat = "10.22";
+            var textoFloat = +textoFloat;
+
+        
+    # Como escolher a quantidade de casas decimais apresentadas de um número:
+    -------------------------------------------------------------------------
+        <script type="text/javascript">
+            var x = 1.987654321;
+            var y = x.toFixed(2);
+            alert(y);
+        </script>
+
+        Resultado: 1.98
+
+
+    

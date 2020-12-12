@@ -1,0 +1,83 @@
+Tratamento de erros:
+====================
+
+Objeto Error:
+-------------
+
+    * message --> Detalhes do erro.
+    * name --> Tipo de erro.
+    * toString() --> Tipo de erro e a mensagem.
+
+    Tipo de erro                Descrição
+    -------------------------------------
+    EvalError                   Erro usando eval()
+    RangeError                  Número que extrapola limites
+    ReferenceError              Referência a valor indefinido
+    SintaxError                 Erro de sintaxe da linguagem
+    TypeError                   Operando diferente do esperado
+    URIError                    Uso errado de funções URI
+
+
+try... catch
+------------
+Delimita um código e faz o debug mostrando o erro se ocorrer.
+
+    Exemplo:
+    <script>
+        try{
+            let x = a
+            let b = x + 10
+            alert(b)
+        }catch(erro){
+            alert(`Tipo de erro: ${erro.name} \n Descrição do erro: ${erro.message}`)
+        }
+    </script>
+
+    Exemplo:
+    <script>
+        try{
+            let x = a
+            let b = x + 10
+            alert(b)
+        }catch(erro){
+            alert(erro.toString())
+        }
+    </script>
+
+
+try... catch... finally
+-----------------------
+Como no exemplo acima executa o código e executa uma ação caso o erro ocorra.
+
+<script>
+    try{
+        let x = a
+        let b = x + 10
+        alert(b)
+    }catch(erro){
+        //Mostra o erro: name e message
+        alert(`Tipo de erro: ${erro.name} \n Descrição do erro: ${erro.message}`)
+    }finally{
+        //Ação após o erro.
+        alert("ação depois do erro!")
+    }
+</script>
+
+
+throw
+-----
+É possível criar critérios para gerar erros. Dessa forma o sistema avalia aquela ação e a adiciona como erro.
+
+<script>
+
+    let x = prompt("Informe um número maior que 10:")
+    try{
+        if(x < 10){
+            throw "O número informado é inválido. É menor do que 10."
+        }
+        alert(x)
+    }catch(erro){
+        alert(erro)
+    }
+    
+</script>

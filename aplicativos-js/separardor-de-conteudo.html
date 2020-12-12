@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Separador</title>
+	<link rel="stylesheet" href="./css/normalize.css">
+	<style>
+		body, html{
+			font-family: sans-serif;
+		}
+		#container div{
+			background-color: red;
+			float: left;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container" col="4" mg="40">
+		<div>Elemento 1</div>
+		<div>Elemento 2</div>
+		<div>Elemento 3</div>
+		<div>Elemento 4</div>
+		<div>Elemento 5</div>
+		<div>Elemento 6</div>
+		<div>Elemento 7</div>
+		<div>Elemento 8</div>
+		<div>Elemento 9</div>
+		<div>Elemento 10</div>
+		<div>Elemento 11</div>
+		<div>Elemento 12</div>
+		<div>Elemento 13</div>
+		<div>Elemento 14</div>
+		<div>Elemento 15</div>
+		<div>Elemento 16</div>
+		<div>Elemento 17</div>
+		<div>Elemento 18</div>
+		<div>Elemento 19</div>
+		<div>Elemento 20</div>
+		<div>Elemento 21</div>
+		<div>Elemento 22</div>
+		<div>Elemento 23</div>
+		<div>Elemento 24</div>
+		<div>Elemento 25</div>
+		<div>Elemento 26</div>
+		<div>Elemento 27</div>
+		<div>Elemento 28</div>
+		<div>Elemento 29</div>
+		<div>Elemento 30</div>
+		<div>Elemento 31</div>
+		<div>Elemento 32</div>
+		<div>Elemento 33</div>
+		<div>Elemento 34</div>
+		<div>Elemento 35</div>
+		<div>Elemento 36</div>
+		<div>Elemento 37</div>
+		<div>Elemento 38</div>
+		<div>Elemento 39</div>
+		<div>Elemento 40</div>
+		<div>Elemento 41</div>
+		<div>Elemento 42</div>
+		<div>Elemento 43</div>
+		<div>Elemento 44</div>
+		<div>Elemento 45</div>
+		<div>Elemento 46</div>
+		<div>Elemento 47</div>
+		<div>Elemento 48</div>
+		<div>Elemento 49</div>
+		<div>Elemento 50</div>		
+	</div>
+	<script>
+
+	let col = {
+		ct: document.getElementById('container'),
+		col: document.getElementById('container').getAttribute('col'),
+		mg: document.getElementById('container').getAttribute('mg'),
+		e: document.querySelectorAll('#container > div'),
+		larguraDaTela: window.innerWidth,
+
+		atualizar: function(){
+			col.ct = document.getElementById('container')
+			col.col = col.ct.getAttribute('col')
+			col.mg = col.ct.getAttribute('mg')
+			col.e = document.querySelectorAll('#container > div')
+			col.larguraDaTela = window.innerWidth
+		},
+
+		organizar: function(){
+			let numeroDeMargens = (Number(col.col) + 1)
+			let somaDasMargens = numeroDeMargens * Number(col.mg)
+			let larguraBox = (Number(col.larguraDaTela) - somaDasMargens) / Number(col.col)
+			
+			for( let i = 0; i < col.e.length; i++){
+				col.e[i].style.width = larguraBox + "px"
+				col.e[i].style.marginLeft = col.mg + "px"
+			}
+		}
+	}
+
+	col.organizar()
+	window.addEventListener('resize', function(){
+		col.atualizar()
+		col.organizar()
+	});
+
+	</script>
+</body>
+</html>

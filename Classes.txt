@@ -1,0 +1,60 @@
+Classes em javascript
+=====================
+
+Declarando classes:
+-------------------
+	Usamos funções contrutoras em js para substituir as classes:
+
+		function Pessoa(argNome){
+			this.nome = argNome
+			this.cumprimentar = function(){
+				console.log(`Olá eu sou ${this.nome}`)
+			}
+		}
+
+
+Agora podemos chamar a função contrutora e fornecer os parâmetros:
+------------------------------------------------------------------
+
+	let Jose = new Pessoa("José")
+	Jose.name
+	Jose.cumprimentar()
+
+	let Maria = new Pessoa("Maria")
+	Maria.name
+	Maria.cumprimentar()
+
+
+	Outro exemplo:
+	--------------
+
+		const Pessoa = function(argNome,argIdade, argAltura,argFrutas, argSentado){
+
+			this.nome = argNome
+			this.idade = argIdade
+			this.altura = argAltura
+			this.frutas = argFrutas
+			this.estaSentado = argSentado
+			this.andar = function(){
+				if(this.estaSentado == false){
+					console.log(`O ${this.nome} está correndo!`)
+				}else{
+					console.log(`O ${this.nome} não pode correr, pois está sentado!`)
+				}
+			}
+			this.levantar = function(){
+				if(this.estaSentado == true){
+					this.estaSentado = false
+					console.log(`Agora ${this.nome} está de pé.`)
+				}
+			}
+		}
+
+
+		//Instanciando a classe do Exemplo:
+		let Jose = new Pessoa("José",25,1.80,["maçã","pera","melancia"],true)
+		Jose.andar()
+		Jose.levantar()
+		Jose.andar()
+
+

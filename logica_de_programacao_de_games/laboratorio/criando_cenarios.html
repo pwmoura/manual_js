@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Criando Cenários</title>
+	<style>
+		canvas{
+			margin: 0px auto;
+			margin-top: 100px;
+			border: 1px solid #000000;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="1600" height="800"></canvas>
+	<script>
+
+		// [Declaração das variáveis]
+		let cnv, ctx, malha
+		
+		// [Variáveis de contexto]
+		cnv = document.querySelector("canvas")
+		ctx = cnv.getContext("2d")
+
+		// [Criação das imagens]
+		malha = new Image()
+		malha.src = "./img/malha.png"
+
+		// [Criação dos objetos]
+		const controle = {
+				esquerda: 37,
+				cima: 38,
+				direita: 39,
+				baixo: 40,
+				enter: 13,
+				presCima: false,
+				presDireita: false,
+				presEsquerda: false,
+				presBaixo: false,
+				presEnter: false,
+				pressionarTecla: function(tecla){
+					let codigoDaTecla = tecla.keyCode
+					if(codigoDaTecla === controle.esquerda){
+						controle.presEsquerda = true
+					}
+					if(codigoDaTecla === controle.direita){
+						controle.presDireita = true
+					}
+					if(codigoDaTecla === controle.cima){
+						controle.presCima = true
+					}
+					if(codigoDaTecla === controle.baixo){
+						controle.presBaixo = true
+					}
+				},
+				liberarTecla: function(tecla){
+					let codigoDaTecla = tecla.keyCode
+					if(codigoDaTecla === controle.esquerda){
+						controle.presEsquerda = false
+					}
+					if(codigoDaTecla === controle.direita){
+						controle.presDireita = false
+					}
+					if(codigoDaTecla === controle.cima){
+						controle.presCima = false
+					}
+					if(codigoDaTecla === controle.baixo){
+						controle.presBaixo = false
+					}
+				}
+			}
+
+			const jogador = {
+				x: 200,
+				y: 200,
+				cor: "yellow",
+				largura: 32,
+				altura: 32,
+				velocidade: 2,
+				desenhar: function(){
+					ctx.fillStyle = jogador.cor
+					ctx.fillRect(jogador.x, jogador.y, jogador.largura,jogador.altura)
+				},
+				mover: function(){
+					//Teste de gravidade.
+					//jogador.velocidade = jogador.velocidade + 0.25
+					//jogador.y = jogador.y + jogador.velocidade
+					if(controle.presEsquerda){
+						jogador.x = jogador.x - jogador.velocidade
+					}
+					if(controle.presDireita){
+						jogador.x = jogador.x + jogador.velocidade
+					}
+					if(controle.presCima){
+						jogador.y = jogador.y - jogador.velocidade
+					}
+					if(controle.presBaixo){
+						jogador.y = jogador.y + jogador.velocidade
+					}
+				
+				}
+			}
+
+			const fundo1 = {
+				sprite: malha,
+				x: 0,
+				y: 0,
+				largura: 1600,
+				altura: 800,
+				desenhar: function(){
+					ctx.drawImage(
+						fundo1.sprite,
+						fundo1.x,
+						fundo1.y,
+						fundo1.largura,
+						fundo1.altura
+					)
+				}
+			}
+
+			// [Funções principais do jogo]
+			function renderizar(){
+				ctx.clearRect(0,0,cnv.width, cnv.height)
+				fundo1.desenhar()
+				jogador.desenhar()
+			}
+
+			function atualizar(){
+				jogador.mover()
+			}
+
+			function loop(){
+				atualizar()
+				renderizar()
+				requestAnimationFrame(loop,cnv)
+			}
+			window.addEventListener("keydown",controle.pressionarTecla,false)
+			window.addEventListener("keyup",controle.liberarTecla,false)
+			requestAnimationFrame(loop,cnv)
+
+
+	</script>
+</body>
+</html>

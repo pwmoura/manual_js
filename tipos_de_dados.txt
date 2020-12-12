@@ -1,0 +1,109 @@
+Tipos de dados JavaScript
+=========================
+Os tipos number, string e booleans não são objetos, não possuem propriedades ou métodos. Variáveis ​​de JavaScript podem conter muitos tipos de dados: números, strings, arrays, objetos e muito mais:
+
+Exemplo:
+--------
+
+var lastName = "Johnson";                      // String
+var cars = ["Saab", "Volvo", "BMW"];           // Array
+var x = {firstName:"John", lastName:"Doe"};    // Object
+
+
+Exemplo:
+--------
+var x;               // Variável não definida.
+var x = 5;           // Variável numérica.
+var x = "John";      // String.
+
+var person;          // undefined.
+var person = null;   // null.
+
+
+Strings
+------
+
+
+
+Numbers
+-------
+var length = 16;
+
+
+Booleans
+--------
+Os literais booleanos, na sintaxe JavaScript, são as palavras-chave true e false (minúsculas) destinadas a definir as condições de verdadeiro e falso, respectivamente,
+para uma variável ou equivalente, como mostrado a seguir:
+
+	Exemplos 1:
+	var x = true;        // booleans.
+	
+
+
+
+var y = false;       // booleans.
+
+
+
+
+
+Conversão:
+==========
+
+# typeof
+--------
+Informa o tipo primitivo do elemento.
+
+	Exemplo:
+	let nome = "Wenys"
+	alert(typeof(nome))
+
+
+# string em inteiro: parseInt()
+-------------------------------
+
+Exemplo 01:
+-----------
+	<script type="text/javascript">
+		//var bola int;
+		var n1 = prompt();
+		var n1conver = parseInt(n1);
+		var n2 = prompt();
+		var n2conver = parseInt(n2);
+		var total = n2conver + n1conver;
+		alert(total);
+	</script>
+
+Exemplo 02:
+------------
+	<script type="text/javascript">
+		//var bola int;
+		var n1 = prompt();
+		var n1conver = +n1;
+		var n2 = prompt();
+		var n2conver = +n2;
+		var total = n2conver + n1conver;
+		alert(total);
+	</script>
+
+
+# string em número decimal: parseFloat()
+----------------------------------------
+	Exemplo 01:	
+		var textoFloat = "10.22";
+		var float = parseFloat(textoFloat);
+	
+	Exemplo 02:
+		var textoFloat = "10.22";
+		var textoFloat = +textoFloat;
+
+
+# Como escolher a quantidade de casas decimais apresentadas de um número:
+-------------------------------------------------------------------------
+<script type="text/javascript">
+	var x = 1.987654321;
+	var y = x.toFixed(2);
+	alert(y);
+</script>
+
+Resultado: 1.98

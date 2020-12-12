@@ -1,0 +1,133 @@
+Manipuladores de evento:
+========================
+
+	onload
+	------
+	Executando js depois do carregamento da página.
+	
+	Ex. 1:
+	window.onload = function(){}
+
+	Ex. 2:
+	object.addEventListener("load", myScript);
+
+	Ex. 3:
+	<img src="w3javascript.gif" onload="loadImage()" width="100" height="132">
+	<script>
+		function loadImage() {
+		alert("Image is loaded");
+	}
+	
+
+	Evento dentro das tags html:
+	----------------------------
+
+		.onclick
+		----------
+		O evento será disparado quanto a imagem for clicada, aparecer� uma mensagem de alerta. Ele deve ficar no elemento para que funcione.
+
+			head:
+			-----
+			<style>
+				body{background-color:#000;}
+				#test{display:block; margin:20px auto;}
+			</style>
+
+			body:
+			-----
+			<img id="test" onclick="window.alert('Ol�...');" src="img/xlamp_off.png"/>
+
+
+		.onmouseover
+		--------------
+		O evento será disparado quanto passar o mouse na imagem, aparecer� uma mensagem de alerta. Ele deve ficar no elemento para que funcione.
+
+			head:
+			-----
+			<style>
+				body{background-color:#000;}
+				#test{display:block; margin:20px auto;}
+			</style>
+
+
+			body:
+			-----
+			<img id="test" onmouseover="window.alert('Ol�...');" src="img/xlamp_off.png"/>
+
+
+		.onMouseOut
+		-----------
+		Define ação quando o usuário retira o mouse sobre o elemento
+
+
+
+		.onload
+		---------
+		Dispara o evento quando o elemento for carregado. Nesse evento, quando a tag body for carregado vai disparar o evento.
+
+			head:
+			-----
+			<style>
+				body{background-color:#000;}
+				#test{display:block; margin:20px auto;}
+			</style>
+
+
+			body:
+			-----
+			<body onload="alert('Carregado...');">
+				<img id="test" src="img/xlamp_off.png"/>
+			</body>
+
+
+		.onBlur
+		--------
+		Quando o foco é removido do elemento.
+
+		
+		.onFocus
+		----------
+		O elemento é focado
+
+
+		.onChange
+		-----------
+		Muda o valor do elemento
+
+
+		.onKeyPress
+		-------------
+		O usuário pressiona uma tecla sobre o elemento.
+
+
+		.onSubmit
+		--------
+		Define ação ao enviar um formulário
+
+
+	# Adicionar evento no js sem usar as tag Html:
+	----------------------------------------------
+	Adicionando Eventos manipuladores.
+
+		addEventListener("click",clicar)
+		--------------------------------
+		Evento entre aspas e função sem aspas. ex.: onClick vira click. É só tirar o on dos eventos.
+
+	        d.addEventListener("click",clicar)
+			
+			function clicar(){
+				d.innerHTML = "Você clicou"
+			} 
+
+		Outros eventos:
+		---------------
+			mousedown
+			mouseup
+			mousemove
+			click
+			dblclick
+			mouseover
+			mouseout
+			mouseenter
+			mouseleave
+			contextmenu

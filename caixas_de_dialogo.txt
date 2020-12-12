@@ -1,0 +1,37 @@
+Caixas de diálogo
+=================
+
+alert
+-----
+Envia uma mensagem ao usuário.
+
+    Exemplo 1:
+    <script type="text/javascript">
+        alert("Alá Mundo!");
+    </script>
+
+    Exemplo 2:
+    <script type="text/javascript">
+        alert("Alô Mundo!<br />Cheguei.");
+    </script>
+
+    Exemplo 3:
+    <script type="text/javascript">
+        alert("Alô Mundo!\nCheguei.");
+    </script>
+
+
+confirm
+-------
+Caixa de diálogo com os botões ok ou cancelar.
+<script type="text/javascript">
+    confirm("Você tem certeza que quer apagar o arquivo?\n
+    Esta operação não poderá ser desfeita.");
+</script>
+
+
+prompt
+------
+<script type="text/javascript">
+	prompt("Olá visitante\nInforme a data do seu nascimento.", "dd/mm/aaaa");
+</script>

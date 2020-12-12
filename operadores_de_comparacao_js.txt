@@ -1,0 +1,22 @@
+﻿Comparação JavaScript e Operadores lógicos
+Retornal true ou false.
+
+
+ == Igual
+=== Valor igual e igual tipo
+ != Não igual
+!== Não igual valor ou não Tipo de igual
+  > Maior que
+  < Menor
+ >= Maior ou igual a
+ <= Menor ou igual
+
+
+Exemplo de comparação:
+======================
+x = 10;
+y = 10;
+
+alert(x==y);
+
+Retorna: true.

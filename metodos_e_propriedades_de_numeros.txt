@@ -1,0 +1,103 @@
+ Métodos e propriedades de números:
+ ----------------------------------
+
+    parseInt() e parseFloat()
+    -------------------------
+    Transformar strings em números
+    ParseInt() --> inteiro.
+    parseFloat() --> flutuante, decimal.
+ 
+    <script>
+        var n1 = prompt("Digite um número...")
+        var n2 = prompt("Digite outro número...")
+        var t = parseInt(n1) + parseInt(n2)
+        document.getElementsByTagName("strong")[0].innerHTML= t
+    </script>
+
+
+    Number(Variavel)
+    ----------------
+    Mesma função do parseInt e do parseFloat, o sistema decide qual transformação fazer.
+    <script>
+        var n1 = prompt("Digite um número...")
+        var n2 = prompt("Digite outro número...")
+        var t = Number(n1) + Number(n2)
+        document.getElementsByTagName("strong")[0].innerHTML= t
+    </script>
+
+
+    String(variavel) ou n.toString()
+    -----------------------------
+    Transforma número em string
+    <script>
+        var n1 = Number(prompt("Digite um número..."))
+        var n2 = Number(prompt("Digite outro número..."))
+        var t = n1.toString() + n2.toString()
+        document.getElementsByTagName("strong")[0].innerHTML= t
+    </script>
+
+    <script>
+        var n1 = Number(prompt("Digite um número..."))
+        var n2 = Number(prompt("Digite outro número..."))
+        var t = String(n1) + String(n2)
+        document.getElementsByTagName("strong")[0].innerHTML= t
+    </script>
+
+    toFixed()
+    ---------
+    Formata a quantidade de casas decimais.
+    
+    <script>
+        n1 = 13.5
+        alert(n1.toFixed(2))
+    </script>
+
+    Resultado: 13.50
+
+    .replace("." , ",")
+    ----------------------------------
+    Formata a quantidade de casas decimais e troca o ponto pela virgula.
+    
+    <script>
+        n1 = 13.5
+        alert(n1.toFixed(2).replace("." , ","))
+    </script>
+
+    Resultado: 13,50
+
+    .toLocaleString('pt-BR',{style: 'currency', currency:'BRL'})
+    ------------------------------------------------------------
+    Converte o número em valor monetário, em reais. currency:'BRL' --> real, currency:'USD' --> dolar, currency:'EUR' --> euro
+        <script>
+                n1 = 13.5
+                alert(n1.toLocaleString('pt-BR',{style: 'currency', currency:'BRL'}))
+        </script>
+
+        Resultado: R$ 13,50
+    
+    Math.PI
+    -------
+        Retorna o valor de PI.
+        console.log(Math.PI)
+    
+
+    Math.sqrt(numero)
+    -----------------
+        retorna a raiz quadrada.
+        console.log(Math.sqrt(25))
+    
+
+    Math.floor(numeroComVirgula)
+    ----------------------------
+    Arredonda para baixo.
+    console.log(Math.floor(1.87))
+
+
+    Math.random()
+    -------------
+    Gera um número aleatório entre 0 e 1.
+        
+        console.log(Math.random()) --> 0,296587425
+        
+        Para gerar um número até 10 eu multiplico por 10
+        console.log(Math.random()*10) --> 2.365987

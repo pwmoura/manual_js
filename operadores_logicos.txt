@@ -1,0 +1,22 @@
+﻿Operadores lógicos
+==================
+Retornam verdadeiro ou falso.
+
+&&  and  (e)
+||  or   (ou)
+!   not  (não)
+
+Exemplo:
+---------
+var b = 200;
+alert((b>=100)&&(b<=300));
+
+Retorna: false.
+
+exemplo 2:
+----------
+x não é maior que 5?
+retorna: false. Inverte o resultado lógico.
+
+var x = 6;
+alert(!(x>5));

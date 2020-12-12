@@ -1,0 +1,48 @@
+Arrays
+======
+
+Array Liteteral
+----------------
+Os literais arrays, na sintaxe JavaScript, são os conjuntos de zero ou mais valores, separados por vírgula e envolvidos por colchetes ([ ]). Os valores contidos em um array recebem um índice sequencial começando com zero. A sintaxe para criar um array literal é mostrada a seguir:
+
+  Exemplo:
+  var frutas = ["laranja", "pera", "goiaba", "morango"];
+  alert(frutas[0])  //contém o valor laranja.
+  alert(frutas[3]) //contém o valor morango.
+
+
+Arrays mistos
+-------------
+Um array pode conter qualquer tipo de dado da JavaScript, incluindo expressões, objetos e outras arrays. Por exemplo:
+
+  Exemplo:
+  ArrayMisto = ["laranja", 34, "casa", true, [1,3,5], a + b];
+  alert(ArrayMisto[0]);
+  alert(ArrayMisto[1]);
+  alert(ArrayMisto[3]);
+  alert(ArrayMisto[4][1]);
+  alert(ArrayMisto[5]);
+
+
+Métodos/atributos de arrays
+===========================
+
+.push()
+-------
+Método que acrescenta um valor a última posição do array.
+let num = [0,1,2,3]
+num.push(4)
+
+
+.length
+-------
+Propriedade que retorna o comprimento do array.
+let num = [0,1,2,3]
+num.length
+
+
+.sort()
+-------
+Coloca os valores do array em ordem crescente.
+let num = [5,4,6,3]
+num.sort()

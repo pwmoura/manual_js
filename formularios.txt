@@ -1,0 +1,183 @@
+Trabalhando com formulários:
+----------------------------
+	
+	Acessando valores de campos de formulário:
+	------------------------------------------
+	Acessa assim: nameDoFormulario.nameDoCampo.value
+	
+	<form action="" method=""   name="form1">
+		<input type="text" name="txt">
+		<input type="button" value="Mostrar Valor" onClick="alert(form1.txt.value)">
+	</form>
+
+    Inserindo valores em campos input:
+    ----------------------------------
+	Também pode ser acessado utilizando o id do campo.
+        <script type="text/javascript">
+            function inserir(){
+                
+                //Acessa o id da tag form.
+                var formulario = document.getElementById("formulario");
+                
+                //Insere o valor 10 no campo ctest.
+                formulario.ctest.value=10;
+                
+            }
+        </script>
+
+        <form id="formulario">
+            <input type="text" name="ctest" disabled><br>
+            <input type="button" onclick="inserir()" value="Inserir" >
+        </form>
+
+
+    Pegar o valor de um campo de formulário:
+    ----------------------------------------
+        .value --> pega o valor de um campo de formulário. O valor é pegado pelo atributo name do campo input.
+
+
+                <scritp>
+                    // JavaScript Document
+                    function inserir(){
+                        
+                        //Acessa o id da tag form.
+                        var formulario = document.getElementById("formulario");
+                        
+                        //Insere o valor 10 no campo ctest.
+                        var ctext = formulario.ctest.value;
+                        
+                        alert(ctext);
+                        
+                    }
+                </script>
+
+                <form id="formulario">
+                    <input type="text" name="ctest" ><br>
+                    <input type="button" onclick="inserir()" value="Inserir" >
+                </form>
+
+
+    Trabalhando com botões de rádio:
+    --------------------------------
+    Para pegá-los é necessário efetuar uma condição. Podendo colocar o resultado em uma variável. Outra forma é usando o operador ternário.
+
+        Html:
+            <input type="radio" name="tsexo" id="cmasc" checked><label for="cmasc" value=”masc”>masculino</label>
+            <input type="radio" name="tsexo" id="cfem"><label for="cfem" value=”fem”>feminino</label><br>
+            <button onclick="testar()">Testar</button>
+        
+        js:
+            <script>
+                function testar(){
+                    sexo = document.getElementsByName("tsexo")
+                    if(sexo[0].checked){
+                        alert("Sexo masculino.")
+                    }else if(sexo[1].checked){
+                        alert("Sexo feminino")
+                    }else{
+                        alert("erro: nenhuma opção foi marcado.")
+                    }
+                }
+            </script>
+
+
+
+
+    Validação de formulários:
+    -------------------------
+
+        Validação de senha:
+        -------------------
+            <script type="text/javascript">
+                function valida(f1){
+                    //min = 5 e max = 15
+                    if(f1.senha.value.length < 5 || f1.senha.value.lenght > 15){
+                        alert("Senha deve conter entre 5 e 15 caracteres");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <form method="POST" action="form.php" onsubmit="return valida(this)" id="f1">
+                <input type="number" name="senha" id="csenha" placeholder="Nome aqui...">
+                <input type="submit" value="Enviar">
+            </form>
+
+        Validação de campo vazio:
+        -------------------------
+            <script type="text/javascript">
+                function valida(nomeform){
+                    //Se o campo nome do formulário estiver vazio retorna função.
+                    if(f1.nome.value==""){
+                    alert("Nome não foi preenchido");
+                    return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <form method="POST" action="form.php" onsubmit="return valida(this)" id="f1">
+                <input type="text" name="nome" id="cname" placeholder="Nome aqui...">
+                <input type="submit" value="Enviar">
+            </form>
+
+
+        Validação de campos de e-mail:
+        ------------------------------
+            <script type="text/javascript">
+                function valida(f1){
+                    //Se o campo nome do formulário estiver vazio retorna função.
+                    if(f1.email.value.indexOf('@',0)== -1){
+                        alert("E-mail incorreto!");
+                    return false;
+                    }
+                    return true;
+                }
+            </script>
+            
+            <form method="POST" action="form.php" onsubmit="return valida(this)" id="f1">
+                <input type="text" name="email" id="cname" placeholder="Nome aqui...">
+                <input type="submit" value="Enviar">
+            </form>
+
+        Criando um mini editor com textarea: 01
+        ---------------------------------------
+        Ao clicar no botão coloca o texto em negrito. Mas a textarea não interpreta o htm.
+
+        html:
+        <button onclick="negrito()">Negrito</button><br>
+        <textarea id="artigo"></textarea>
+
+        js:
+        <script>
+            function negrito(){
+                let txt = document.getElementById("artigo")
+                
+                //índices da seleção.
+                let a = txt.selectionStart
+                let d = txt.selectionEnd
+
+                //fatiando a string.
+                txt_antes = txt.value.substr(0,a)
+                txt_depois = txt.value.substr(d,txt.value.lenght)
+                txt_selecionado = txt.value.substr(a,d)
+
+                //Montando o texto final
+                txt_final = txt_antes + "<strong>" + txt_selecionado + "</strong>" + txt_depois
+
+                //Inserindo o texto de volta na textarea
+                txt.value = txt_final
+            }
+        </script>
+
+
+    Div editável:
+    -------------
+    pode ser usada como editor.
+    <div contenteditable="true">Primeira linha.<br>
+      Veja como o texto se adequa aqui. Também<br> é possivel <strong>inserir quebras de linha</strong> ao final?
+      <br>Funciona corretamente....
+      <br>
+      <br><span style="color: lightgreen">...então ao invés de texto você aplica seu filtro.</span>.
+    </div>

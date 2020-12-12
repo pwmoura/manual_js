@@ -1,0 +1,166 @@
+Estruturas de repetição:
+------------------------
+    
+    for - percorre um bloco de código várias vezes
+    ----------------------------------------------
+        i --> contador [pode ser trocado por outro nome]
+        5 --> quantidade de vezes que repetirá o loop.
+        i++ --> sistema de contagem que acrescenta 1 a cada loop.
+
+        Ex.:
+            
+            for (i = 0; i < 5; i++) {
+                text += "O número é " + i + "<br>";
+            }
+
+        Resultado:
+            O número é 0 
+            O número é 1 
+            O número é 2 
+            O número é 3 
+            O número é 4
+        
+        Acessando indices de um array com a estrutura FOR. Ex.: 
+            <script>
+                var cars = ["BMW", "Volvo", "Saab", "Ford"];
+                var i, len, text;
+                for (i = 0, len = cars.length, text = ""; i < len; i++) {
+                    text += cars[i] + "<br>";
+                }
+                document.getElementById("demo").innerHTML = text;
+            </script>
+
+        Ex.:
+        Coleta os nomes de um array:
+            var cars = ["BMW", "Volvo", "Saab", "Ford"];
+            var i = 0;
+            var text = "";
+
+            for (;cars[i];) {
+                text += cars[i] + "<br>";
+                i++;
+            }
+
+
+
+        E você pode omitir a instrução 1 (como quando seus valores são definidos antes do início do loop). Ex.:
+            <script>
+                var cars = ["BMW", "Volvo", "Saab", "Ford"];
+                var i = 2;
+                var len = cars.length;
+                var text = "";
+
+                for (; i < len; i++) {
+                    text += cars[i] + "<br>";
+                }
+
+                document.getElementById("demo").innerHTML = text;
+            </script>     
+
+
+    for/in - percorre as propriedades de um objeto
+    ----------------------------------------------
+    A for/ininstrução JavaScript percorre as propriedades de um objeto:
+
+        Ex.:
+            var person = {fname:"John", lname:"Doe", age:25}; 
+
+            var text = "";
+            var x;
+
+            for (x in person) {
+                text += person[x];
+            }
+
+
+    for/of - percorre os valores de um objeto iterável
+    --------------------------------------------------
+        A for/ofinstrução JavaScript percorre os valores de um objeto iterável. for/of permite fazer um loop sobre estruturas de dados que podem ser iteradas, como Arrays, Strings, Maps, NodeLists e muito mais.
+        O for/ofloop tem a seguinte sintaxe:
+
+            for (variable of iterable) {
+                // code block to be executed
+            }
+
+        variável - Para cada iteração, o valor da próxima propriedade é atribuído à variável. Variável pode ser declarada com const, letou var.
+        iterável - Um objeto que possui propriedades iteráveis.
+
+        Looping sobre uma matriz
+        ------------------------
+            Ex.:
+                var cars = ['BMW', 'Volvo', 'Mini'];
+                var x;
+
+                for (x of cars) {
+                    document.write(x + "<br >");
+                }
+            
+            Looping sobre uma string
+            -----------------------
+                Exemplo
+                    var txt = 'JavaScript';
+                    var x;
+
+                    for (x of txt) {
+                        document.write(x + "<br >");
+                    }
+                
+                Resultado:
+                    J
+                    a
+                    v
+                    a
+                    S
+                    c
+                    r
+                    i
+                    p
+                    t
+
+    while - percorre um bloco de código enquanto uma condição especificada é verdadeira
+    -----------------------------------------------------------------------------------
+        O whileloop faz um loop através de um bloco de código, desde que uma condição especificada seja verdadeira.
+
+        Sintaxe
+            while (condition) {
+                // code block to be executed
+            }
+
+            No exemplo a seguir, o código no loop será executado repetidas vezes, desde que a variável (i) seja menor que 10:
+
+            Exemplo
+                while (i < 10) {
+                    text += "The number is " + i;
+                    i++;
+                }
+
+            Ex.:
+            Coleta os nome do array.
+
+                var cars = ["BMW", "Volvo", "Saab", "Ford"];
+                var i = 0;
+                var text = "";
+
+                while (cars[i]) {
+                text += cars[i] + "<br>";
+                i++;
+                }                
+
+    do/while - também percorre um bloco de código enquanto uma condição especificada é verdadeira
+    ---------------------------------------------------------------------------------------------
+    O do/whileloop é uma variante do loop while. Este laço irá executar o bloco de código uma vez, antes de verificar se a condição é verdadeira, então ele irá repetir o loop enquanto a condição for verdadeira.
+    Sintaxe
+        do {
+        // code block to be executed
+        }
+        while (condition);
+        
+    O exemplo abaixo usa um do/whileloop. O loop sempre será executado pelo menos uma vez, mesmo que a condição seja falsa, porque o bloco de código é executado antes que a condição seja testada:
+
+        Ex.:
+            do {
+                text += "The number is " + i;
+                i++;
+            }
+            while (i < 10);
+    

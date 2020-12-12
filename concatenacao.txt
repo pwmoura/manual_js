@@ -1,0 +1,39 @@
+Concatenação:
+-------------
+
+	Exemplo
+	-------
+	txt1 = "John";
+	txt2 = "Doe";
+	txt3 = txt1 + " " + txt2;
+
+	Resultado: John Doe
+
+	Exemplo --> Placeholder
+	-------
+	<script>
+		txt1 = "Wenys"
+		txt2 = "Moura"
+		txt3 = `Meu nome é ${txt1}  ${txt2}`
+		alert(txt3)
+	</script>
+	
+	Resultado: Wenys Moura
+
+
+Caracteres de Escape
+--------------------
+	Existe uma série de caracteres que podem ser usados em strings, veja a lista:
+		
+		\b ==> backspace;
+		\t ==> tabulação horizontal;
+		\f ==> avanço de formulário; 
+		\n ==> nova linha;
+		\r ==> retorno de carro;
+		\" ==> aspas duplas;
+		\'==> apóstrofe;
+		\\ ==> barra invertida; 
+	
+	Um retorno de carro está bem no meio desta linha.
+	"Isto não saiu como deveria" -- Disse ela.
+	Esta linha tem uma tabulação	aqui

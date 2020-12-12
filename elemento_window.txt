@@ -1,0 +1,146 @@
+﻿Comandos window 
+================
+	window.navigator
+	----------------
+	Mostra o navegador.
+	document.write(window.navigator.appName)
+
+    alert("mensagem aqui!")
+	------------------------
+	Mensagem de alerta com ok.
+		Ex.:
+		alert("Olá mundo!")
+		
+	
+	prompt("Pergunta aqui...")
+	--------------------------
+	Pega um texto digitado por um usuário.
+		nome = window.prompt("Qual é o seu nome?")
+		alert("Bem vindo, " + nome)
+		
+	
+	confirm("Pergunta aqui?")
+	-------------------------
+	Pergunta com dois botões: ok e cancela.
+        Ex.:
+            resposta = prompt("Pergunta aqui...")
+            resp = confirm("Pergunta aqui?")
+
+
+    window.innerHeight
+	------------------
+	Altura interna da janela do navegador (em pixels).
+		
+		Ex.:
+		alert(window.innerHeight)
+	
+	
+    window.innerWidth
+	-----------------
+	A largura interna da janela do navegador (em pixels) 
+        
+        Para o Internet Explorer 8, 7, 6, 5:
+            document.documentElement.clientHeight
+            document.documentElement.clientWidth
+            ou
+            document.body.clientHeight
+            document.body.clientWidth
+
+        Uma solução prática em JavaScript (cobrindo todos os navegadores):
+            var w = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+
+            var h = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
+
+
+
+    window.open()
+	-------------
+	Abra uma nova janela.
+	
+		# sintax:
+			window.open("URL","nome","especificações","replaces")
+			
+		# URL = Opcional. Especifica a URL que será carregada na nova janela do navegador.
+		
+		# Nome = Opcional. Especifica o parâmetro target ou um nome para a nova janela. Valores suportados pelos principais navegadores:
+		  _blank - URL é carregada em uma nova janela. Valor padrão.
+		  _parent - URL é carregada em um "parent frame".
+		  _self - URL substitui a página corrente.
+		  _top - URL substitui  uma janela de maior nível.
+		  name - nome da janela.
+	
+		# Especificações
+		Opcional. Os parâmetros devem ser separados com vírgula.
+		Valores suportados pelos principais navegadores:
+
+			 . height = pixels	      Altura da janela. Mínimo valor é 100.
+			 . width = pixels	      Largura da janela. Mínimo valor é 100.
+			 . left = pixels	      Posição da janela em relação ao lado esquerdo da tela. Valores negativos não são suportados.
+			 . top =  pixels	      Posição da janela em relação ao topo da janela. Valores negativos não são suportados.
+			 . menubar=yes|no|1|0     Se ou não mostra a barra de menu (menu bar).
+			 . status=yes|no|1|0      Se ou não adiciona uma barra de status (status bar)
+			 . titlebar=yes|no|1|0    Se ou mão mostra a barra de título (titlebar).
+
+		# Valores suportados por navegadores exclusivos:
+
+			 . scrollbars=yes|no|1|0  Se mostra ou não a barra de rolagem (scroll bars). (IE, Firefox & Opera somente).
+			 . toolbar=yes|no|1|0     Se mostra ou não a barra de ferramentas (toolbar). (IE & Firefox somente).
+			 . resizable=yes|no|1|0   Se permite ou não o redimensionamento da janela (resizing grip). (IE somente).
+			 . location=yes|no|1|0    Se mostra ou não o campo de endereço (location bar).(Opera somente).
+			 . fullscreen=yes|no|1|0  Se mostra o navegador em modo tela cheia (full-screen). (IE somente).
+
+		# Replaces
+		Opcional. Especifica se a URL cria uma entrada ou substitui a entrada corrente na lista do histórico do navegador. Valores suportados:
+			. true -  URL substitui a página atual da lista do histórico do navegador.
+			. false - URL cria uma nova entrada na lista do histórico do navegador.
+	
+		# Observações
+			1. A URL pode ser um documento HTML, arquivo de imagem ou qualquer recurso suportado pelo navegador.
+			2. Se o parâmetro URL não for especificado, uma nova janela em branco (_blank) será aberta.
+			3. O parâmetro name especifica um nome e não o título da janela.
+			4. Para criar uma janela pop-up é necessário a utilização do parâmetro nome.
+	
+		Ex.:	
+			window.open("http://www.blogolista.com/blogocapa?blog=9", "janelaBlogolista", "toolbar=yes, 
+			scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=600");	
+	
+    window.close()
+	--------------
+	Fecha a janela atual.
+	
+		Ex.:
+			<button onClick="fechar()">FECHAR</button>
+			<script>
+				function fechar(){
+					window.close()
+				}
+			</script>
+	
+	
+	window.resizeTo()
+	-----------------
+	Redimensionar a janela atual.
+	myWindow.resizeTo(250, 250);
+
+
+    window.screen
+	-------------
+	Contém informações sobre a tela do usuário.
+        
+        screen.width --> retorna a largura total da tela do usuário
+            document.getElementById("demo").innerHTML =
+            "Screen Width: " + screen.width;
+        
+        screen.height --> retorna a altura total da tela do usuário
+        screen.availWidth --> largura disponível na tela do usuário.
+        screen.availHeight --> altura disponível na tela do usuário.
+        screen.colorDepth --> Exibe a profundidade de cor da tela em bits:
+        screen.pixelDepth --> retorna a profundidade de pixels da tela.
+	
+
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colisão - Preparando o ambiente para jogos</title>
+    <style>
+        canvas{
+            display: block;
+            margin: 0 auto;
+            margin-top: 50px;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="640" height="400" id="palco"></canvas>
+    <script>
+
+        // [Variáveis/Constantes]
+        let cnv = document.getElementById("palco")
+        let ctx = cnv.getContext("2d")
+
+
+        // [Coleção de Arrays]
+        let sprites = [] // --> tudo que for desenhavel
+        let blocks = [] // --> tudo que será sólido.
+
+        // [Funções Principais]
+        function renderizar(){
+            ctx.clearRect(0, 0, cnv.width, cnv.height)
+ 
+        } 
+        function atualizar(){
+
+        }
+        function loop(){
+            window.requestAnimationFrame(loop,cnv)
+            atualizar()
+            renderizar()
+        }
+
+        window.requestAnimationFrame(loop,cnv)
+  
+    </script>
+</body>
+</html>

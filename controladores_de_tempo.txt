@@ -1,0 +1,35 @@
+﻿FUNÇÕES TEMPORIZADORAS
+======================
+
+	setInterval(função, milissegundos, param1, param2, ...)
+	-------------------------------------------------------
+	# Parâmetros
+		função => Requerido. A função que será executada pelo setInterval().
+		milissegundos => Requerido. Intervalo de tempo (milissegundos).
+		param1, param2 => Opcionais. Parâmetros adicionais para passar valores para a função. (Não suportado pelo IE9 e versões anteriores)
+	
+		Detalhes Técnicos
+			# Para interromper o processo de repetição do método setInterval() utilizamos o método:
+				clearInterval(variavel)
+			
+			# Para poder usar o método 'clearInterval()' é necessário atribuir o método 'setInterval()' a uma variável. Veja a sintaxe a seguir:
+				var variavel = setInterval(função, milissegundos, param1, param2, ...)
+				
+	
+	Ex.:
+	Coloca a hora na tela:
+		<body onload='meuRelogio()'>
+			<p>Veja abaixo a hora atual atualizada a cada segundo:</p>
+			<h2 id='rel'></h2>
+			<script>
+				function meuRelogio() {
+					setInterval (function() {
+						var hora = new Date().toLocaleTimeString();
+						document.getElementById('rel').innerHTML = hora;
+					}, 1000);
+				}
+			</script>
+		</body>
+
+
+setTimeout(function(){ alert("Hello"); }, 3000);

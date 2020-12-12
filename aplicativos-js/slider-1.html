@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Slider 1</title>
+	<style>
+		body, html{
+			padding: 0;
+			margin: 0;
+		}
+		.slider-1{
+			width: 100%;
+			margin: 0 auto;
+			position: relative;
+		}
+		.slider-1 .desligado{
+			position: absolute;
+			opacity: 0;
+			transition: opacity: 1s;
+		}
+		.slider .ligado{
+			opacity: 1;
+			transition: opacity: 1s;
+		}
+	</style>
+</head>
+<body>
+	<div class="slider-1">
+		<img src="img/1.jpg" width="100%" alt="" class="slider-1-img desligado">
+		<img src="img/2.jpg" alt="" width="100%"  class="slider-1-img desligado">
+		<img src="img/3.jpg" alt="" width="100%" class="slider-1-img desligado">
+		<img src="img/4.jpg" alt="" width="100%" class="slider-1-img desligado">
+	</div>
+	<script>
+		let slider = {
+			img: document.getElementsByClassName('slider-1-img'),
+			numImg: document.getElementsByClassName('slider-1-img').length,
+			vel: 500,
+			cont: 0,
+			iniciar: function(){
+				setInterval(() => {
+
+					// Cria o contador.
+					let i = slider.cont
+					
+					// Pega o elemento atual.
+					let elemento = slider.img[i]
+
+					// Verifica se o elemento anterir possui a classe ligado.
+					if(i == 0){
+						for(let j in slider.img){
+							slider.img[j].classList.remove('ligado')
+							slider.img[j].classList.add('desligado')
+						}
+					}else{
+						elemento.classList.remove('desligado')
+					}
+
+
+					elemento.classList.contains('ligado')
+
+					slider.cont = i + 1
+
+					if(i > slider.numImg){
+						slider.cont = 0
+					}
+
+				}, slider.vel)
+			}
+
+		}
+		slider.iniciar()
+	</script>
+</body>
+</html>

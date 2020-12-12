@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de um jogo - Lógica para criação de tiles</title>
+    <script>
+
+        window.onload = function(){
+
+
+            // [Declaração das variáveis]
+            let Canvas, Tiles, cnv, ctx, fase1
+
+            // [Matrizes que modelam as fazes do jogo]
+            fase1 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ]
+
+            // [Galeria de objetos do jogo]
+
+            Canvas = {
+
+                // [Objeto Canvas]
+                // Gera a tag <canvas> no html.
+                // Gera a variável cnv.
+                // Gera a variável ctx.
+
+                local: document.getElementsByTagName("body")[0],
+                largura: "608",
+                altura: "608",
+                borda: "1px solid #000000",
+                margem: "0 auto",
+                display: "block",
+
+                construir(){
+                    let tag = document.createElement("canvas")
+                    tag.width = this.largura
+                    tag.height = this.altura
+                    tag.style.border = this.borda
+                    tag.style.margin = this.margem
+                    tag.style.display = this.display
+                    this.local.appendChild(tag)
+                    cnv =  tag
+                    ctx = cnv.getContext("2d")
+                }
+
+            }
+
+            const camera = {
+                x: 0,
+                y: 0,
+                largura: Canvas.largura,
+                altura: Canvas.altura,
+                limiteEsquerdo: function(){
+                    return camera.x + (camera.largura * 0.25)
+                },
+                limiteDireito: function(){
+                    return camera.x + (camera.largura * 0.75)
+                },
+                limiteSuperior: function(){
+                    return camera.y + (camera.altura * 0.25)
+                },
+                limiteInferior: function(){
+                    return camera.y + (camera.altura * 0.75)
+                }
+            }
+
+            //Centralizar a camera no cenário.
+            camera.x = (Canvas.largura - camera.largura) / 2
+            camera.y = (Canvas.altura - camera.altura) / 2
+
+            // [Objetos]
+            const Controle = {
+                cima: 38,
+                baixo: 40,
+                esquerda: 37,
+                direita: 39,
+                enter: 13,
+                presCima: false,
+                presBaixo: false,
+                presDireita: false,
+                presEsquerda: false,
+                presEnter: false,
+                pressionarTecla(tecla){
+                    let codigoDaTecla = tecla.keyCode
+                    if(codigoDaTecla === Controle.esquerda && codigoDaTecla !== Controle.direita){
+                        Controle.presEsquerda = true
+                    }
+                    if(codigoDaTecla === Controle.direita && codigoDaTecla !== Controle.esquerda){
+                        Controle.presDireita = true
+                    }
+                    if(codigoDaTecla === Controle.cima && codigoDaTecla !== Controle.baixo){
+                        Controle.presCima = true
+                    }
+                    if(codigoDaTecla === Controle.baixo && codigoDaTecla !== Controle.cima){
+                        Controle.presBaixo = true
+                    }
+                    if(codigoDaTecla === Controle.enter){
+                        Controle.presEnter = true
+                    }
+                },
+                liberarTecla(tecla){
+                    let codigoDaTecla = tecla.keyCode
+                    if(codigoDaTecla === Controle.esquerda && codigoDaTecla !== Controle.direita){
+                        Controle.presEsquerda = false
+                    }
+                    if(codigoDaTecla === Controle.direita && codigoDaTecla !== Controle.esquerda){
+                        Controle.presDireita = false
+                    }
+                    if(codigoDaTecla === Controle.cima && codigoDaTecla !== Controle.baixo){
+                        Controle.presCima = false
+                    }
+                    if(codigoDaTecla === Controle.baixo && codigoDaTecla !== Controle.cima){
+                        Controle.presBaixo = false
+                    }
+                    if(codigoDaTecla === Controle.enter){
+                        Controle.presEnter = false
+                    }                
+                }
+            }
+
+            const Jogador = {
+                x: 0,
+                y: 0,
+                largura: 64,
+                altura: 64,
+                src: "./img/monstro.png",
+                sprite: new Image(),
+                velocidade: 5,
+                desenhar(){
+                    let img = this.sprite
+                    img.src = this.src
+                    ctx.drawImage(
+                        img,
+                        Jogador.x,
+                        Jogador.y,
+                        Jogador.largura, 
+                        Jogador.altura
+                    )
+                },
+                mover(){
+
+                    // Move o personagem na tela.
+                    if(Controle.presCima){
+                        Jogador.y -= Jogador.velocidade
+                    }
+                    if(Controle.presBaixo){
+                        Jogador.y += Jogador.velocidade
+                    }
+                    if(Controle.presEsquerda){
+                        Jogador.x -= Jogador.velocidade
+                    }
+                    if(Controle.presDireita){
+                        Jogador.x += Jogador.velocidade
+                    }
+                    
+                    // Atualiza a câmera pela posição do jogador.
+                    if(Jogador.x < camera.limiteEsquerdo()){
+                        camera.x = Jogador.x - (camera.largura * 0.25)
+                    }
+                    if(Jogador.x + Jogador.largura > camera.limiteDireito()){
+                        camera.x = Jogador.x + Jogador.largura - (camera.largura * 0.75)
+                    }
+                    if(Jogador.y < camera.limiteSuperior()){
+                        camera.y = Jogador.y - (camera.altura * 0.25)
+                    }
+                    if(Jogador.y + Jogador.altura > camera.limiteInferior()){
+                        camera.y = Jogador.y + Jogador.altura - (camera.altura * 0.75)
+                    }
+
+                    // Limitando a câmera (evitando que ela saia do cenário).
+                    if(camera.x < 0){
+                        camera.x = 0
+                    }
+                    if(camera.x + camera.largura > Canvas.largura){
+                        camera.x = Canvas.largura
+                    }
+                    if(camera.y < 0){
+                        camera.y = 0
+                    }
+                    if(camera.y + camera.altura > Canvas.altura){
+                        camera.y = Canvas.altura
+                    }
+                }
+            }
+
+            Tiles = {
+
+                // [Objeto tiles]
+                // Gera o cenário do jogo.
+
+                x: 0,
+                y: 0,
+                largura: 32,
+                altura: 32,
+                labirinto: fase1,
+
+                desenhar(){
+                    for(let linha in Tiles.labirinto){
+                        for(let coluna in Tiles.labirinto[linha]){
+                            let tile = Tiles.labirinto[linha][coluna]
+                            if( tile === 1){
+                                let x = coluna * Tiles.largura
+                                let y = linha * Tiles.altura
+                                ctx.fillRect(
+                                    x,
+                                    y,
+                                    Tiles.largura,
+                                    Tiles.altura
+                                )
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            
+
+            function renderizar(){
+
+                ctx.translate(-camera.x,-camera.y)
+
+                // [Renderiza/desenha os elementos do jogo]
+                Tiles.desenhar()
+                Jogador.desenhar()
+
+            }
+
+            function atualizar(){
+
+                // [Atualiza os elementos do jogo]
+                Jogador.mover()
+
+            }
+
+            function loop(){
+
+                // [Cria a troca de quadros do jogo: 60 quadros/s aproximadamente]
+                atualizar()
+                renderizar()
+                requestAnimationFrame(loop,cnv)
+
+            }
+
+            // [Linha de comando]
+            Canvas.construir()
+            window.addEventListener("keydown",Controle.pressionarTecla)
+            window.addEventListener("keyup",Controle.liberarTecla)
+            
+            requestAnimationFrame(loop,cnv)
+
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

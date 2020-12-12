@@ -1,0 +1,168 @@
+Trabalhando com datas no js:
+============================
+Objetos de data são estáticos. A hora do computador está passando, mas os objetos de data não.
+
+Sintax: new Date(year, month, day, hours, minutes, seconds, milliseconds)
+
+new date()
+----------
+let cx = document.getElementById("cx")
+let d = new Date()
+
+Retorno:
+Thu Sep 24 2020 16:38:11 GMT-0300 (Horário Padrão de Brasília)
+
+
+Criando datas:
+==============
+
+Formato de data Internacional:
+------------------------------
+var d = new Date("2015-03-25");
+
+
+Ano e mês:
+----------
+var d = new Date("2015-03");
+
+
+Apenas ano:
+-----------
+var d = new Date("2015");
+
+Data hora:
+----------
+As datas ISO podem ser gravadas com horas, minutos e segundos adicionados (AAAA-MM-DDTHH: MM: SSZ):
+var d = new Date("2015-03-25T12:00:00Z");
+
+Se você quiser modificar a hora em relação ao UTC, remova o Z e adicione + HH: MM ou -HH: MM ao invés:
+var d = new Date("2015-03-25T12:00:00-06:30");
+
+Obs: A omissão de T ou Z em uma string de data e hora pode fornecer resultados diferentes em navegadores diferentes.
+
+
+Datas curtas:
+-------------
+Datas curtas são escritas com a sintaxe "MM / DD / AAAA" como esta:
+var d = new Date("03/25/2015");
+
+Obs. de erros:
+Em alguns navegadores, meses ou dias sem zeros à esquerda podem produzir um erro:
+var d = new Date("2015-3-25");
+
+O comportamento de "AAAA / MM / DD" é indefinido.
+Alguns navegadores tentarão adivinhar o formato. Alguns retornarão NaN.
+var d = new Date("2015/03/25");
+
+O comportamento de "DD-MM-AAAA" também é indefinido.
+Alguns navegadores tentarão adivinhar o formato. Alguns retornarão NaN.
+var d = new Date("25-03-2015");
+
+
+Datas longas
+------------
+Datas longas são geralmente escritas com uma sintaxe "MMM DD AAAA" como esta:
+var d = new Date("Mar 25 2015");
+
+O mês e o dia podem estar em qualquer ordem:
+var d = new Date("25 Mar 2015");
+
+E o mês pode ser escrito por extenso (janeiro) ou abreviado (janeiro):
+var d = new Date("January 25 2015");
+var d = new Date("Jan 25 2015");
+
+As vírgulas são ignoradas. Os nomes não diferenciam maiúsculas de minúsculas:
+var d = new Date("JANUARY, 25, 2015");
+
+
+
+toUTCString()
+-------------
+Converte data em string.
+var d = new Date();
+document.getElementById("demo").innerHTML = d.toISOString();
+
+
+Date.parse()
+------------
+Converte datas do formato string para milissegundos.
+var msec = Date.parse("March 21, 2012");
+document.getElementById("demo").innerHTML = msec;
+
+
+Convertendo Milissegundos em datas
+----------------------------------
+var msec = Date.parse("March 21, 2012");
+var d = new Date(msec);
+document.getElementById("demo").innerHTML = d;
+
+
+Pegando as datas do sistema:
+============================
+
+getFullYear()
+Obtenha o ano como um número de quatro dígitos (aaaa)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getFullYear();
+
+
+getMonth()
+Obtenha o mês como um número (0-11)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getMonth();
+
+Mês como array:
+var d = new Date();
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+document.getElementById("demo").innerHTML = months[d.getMonth()];
+
+
+getDate()
+Obtenha o dia como um número (1-31)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getDate();
+
+
+getHours()
+Obtenha a hora (0-23)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getHours();
+
+
+getMinutes()
+Obtenha o minuto (0-59)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getMinutes();
+
+
+getSeconds()
+Obtenha o segundo (0-59)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getSeconds();
+
+
+getMilliseconds()
+Obtenha o milissegundo (0-999)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getMilliseconds();
+
+
+getTime()
+Obtenha o tempo (milissegundos desde 1 de janeiro de 1970)
+
+
+getDay()
+Obtenha o dia da semana como um número (0-6)
+var d = new Date();
+document.getElementById("demo").innerHTML = d.getDay();
+
+dia semana como array:
+var d = new Date();
+var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+document.getElementById("demo").innerHTML = days[d.getDay()];
+
+
+Date.now()
+Obtenha o tempo. ECMAScript 5.
+var n = Date.now();
+document.getElementById("demo").innerHTML = n;

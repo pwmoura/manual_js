@@ -1,0 +1,30 @@
+<script>
+
+    //Armazenando a url do json
+    var url_json = './gera_json_com_array.php'
+
+    //Criando uma nova solicitação
+    var acessa_json = new XMLHttpRequest()
+
+    // Abre o acesso ao arquivo
+    acessa_json.open('GET',url_json,true)
+
+    // Informa alinguagem que o arquivo deverá ser transformado
+    // em objeto js.
+    acessa_json.responseType = 'json'
+    acessa_json.send()
+
+    // Função que imprime os json
+    function retornaJson(varJSON){
+        for(let i in varJSON){
+            console.log(varJSON[i]["nome"])
+        }
+    }
+
+    // Adiciona o json em uma variável
+    acessa_json.onload = function(){
+        var clientes = acessa_json.response
+        retornaJson(clientes)
+    }
+
+</script>

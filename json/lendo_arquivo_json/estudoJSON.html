@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudo JSON - Acessando um arquivo json</title>
+</head>
+<body>
+    <script>
+
+        //Armazenando a url do json:
+        var url_json = './clientes.json'
+
+        //Criando uma nova solicitação:
+        var acessa_json = new XMLHttpRequest()
+
+        // Abre o acesso ao arquivo:
+        acessa_json.open('GET',url_json)
+
+        // Informa alinguagem que o arquivo deverá ser transformado
+        // em objeto js.
+        acessa_json.responseType = 'json'
+        acessa_json.send()
+
+        // Função que imprime os json
+        function retornaJson(varJSON){
+            for(let i in varJSON){
+                console.log(`${varJSON[i]["nome"]} tem ${varJSON[i]["idade"]}`)
+            }
+        }
+
+        // Adiciona o json em uma variável
+        acessa_json.onload = function(){
+            var clientes = acessa_json.response
+            retornaJson(clientes)
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+Comentários
+-----------
+
+  # Uma linha
+  //Comentário de uma linha.
+  
+  # De mais de uma linha:
+  /*
+  mais de
+  uma
+  linha
+  */

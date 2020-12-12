@@ -1,0 +1,76 @@
+.scrollTo(x,y)
+-------------
+Movimenta a barra de rolagem da tela, é um comando window.
+        
+        Html:
+        <button onClick="calcular()">Calcular</button>
+
+        js:
+        function calcular(){
+           scrollTo(0,200)
+        }
+
+.scrollBy(x, y)
+---------------
+Também movimenta, no entanto o próprio elemento é a referência e não a janela toda.
+
+
+.offsetTop
+----------
+Distância do elemento ao topo da página.
+    
+    Outros:
+        offsetHeight
+        offsetLeft
+        offsetParent
+        offsetTop
+        offsetWidth
+
+        item3 = document.getElementById("item3")
+        alert(item3.offsetTop)
+
+
+Animação completa do scroll:
+----------------------------
+Ao clicar no botão o scroll vai pra section ID item3.
+
+<body>
+    <button id="test" onClick="temporizador()">Item 03</button>
+    <section id="item1">
+        <h1>Item 01</h1>
+    </section>    
+    <section id="item2">
+        <h1>Item 02</h1><br>
+        </section>    
+    <section id="item3">
+        <h1>Item 03</h1>
+    </section>
+    <script>
+
+        //Declaração das variáveis.
+        let item3, dist, i, conta, mult
+
+        //Definindo valores.
+        item3 = document.getElementById("item3") // --> pega o id item3.
+        dist = item3.offsetTop // --> pega a distância do topo do item3.
+        i = 0 // --> contador.
+        mult = 20 // --> De quanto em quanto px cada quadro vai mudar.
+        t = 10 // --> tempo para cada quadro.
+
+        //Função temporizadora para ação.
+        function temporizador(){
+            if(i <= dist){
+                conta = setTimeout(muda_scroll,t) // --> muda para muda_scroll a cada t milissegundos.
+            }else{
+                i = 0 // --> zera o contador quando terminar para que o click continue funcionando.
+            }
+        }
+        
+        function muda_scroll(){
+            scrollTo(0,i) // --> muda o quadro atual do scroll.
+            i = i + mult // --> contador para mudança do próximo quadro scroll.
+            temporizador()
+        }
+
+    </script>
+</body>

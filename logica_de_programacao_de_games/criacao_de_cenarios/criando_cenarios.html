@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Criando Cenários</title>
+	<style>
+		canvas{
+			margin: 0px auto;
+			margin-top: 100px;
+			border: 1px solid #000000;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="1600" height="800"></canvas>
+	<script>
+
+		// [Declaração das variáveis]
+		let cnv, ctx, malha, bloco1, tiles, colisores
+		
+		// [Variáveis de contexto]
+		cnv = document.querySelector("canvas")
+		ctx = cnv.getContext("2d")
+
+		// [Criação das imagens]
+		malha = new Image()
+		malha.src = "./img/malha.png"
+
+		bloco1 = new Image()
+		bloco1.src = "./img/bloco1.png"
+
+		imgJogador = new Image()
+		imgJogador.src = "./img/jogador.png"
+
+		// [colisor]
+		colisores = []
+		
+		// [Mundos]
+		const mundo1 = {
+			camada1: [
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+			],
+			listaDeColisores: false,
+			desenhar: function(){
+				for(let linha in mundo1.camada1){
+					for(let coluna in mundo1.camada1[linha]){
+						let x = coluna * 32
+						let y = linha * 32
+						let num = mundo1.camada1[linha][coluna]
+						if(num === 1){
+							ctx.drawImage(
+								bloco1,
+								x,
+								y
+							)
+							if(mundo1.listaDeColisores === false){
+								colisores.push(new BlocoColisor(x,y,32,32))
+							}
+						}
+					}
+				}
+				// Faz a lista de colisores imprimir só uma vez.
+				mundo1.listaDeColisores = true
+			}
+		}
+
+		// [Criação dos objetos]
+		const controle = {
+				esquerda: 37,
+				cima: 38,
+				direita: 39,
+				baixo: 40,
+				enter: 13,
+				presCima: false,
+				presDireita: false,
+				presEsquerda: false,
+				presBaixo: false,
+				presEnter: false,
+				pressionarTecla: function(tecla){
+					let codigoDaTecla = tecla.keyCode
+					if(codigoDaTecla === controle.esquerda){
+						controle.presEsquerda = true
+					}
+					if(codigoDaTecla === controle.direita){
+						controle.presDireita = true
+					}
+					if(codigoDaTecla === controle.cima){
+						controle.presCima = true
+					}
+					if(codigoDaTecla === controle.baixo){
+						controle.presBaixo = true
+					}
+				},
+				liberarTecla: function(tecla){
+					let codigoDaTecla = tecla.keyCode
+					if(codigoDaTecla === controle.esquerda){
+						controle.presEsquerda = false
+					}
+					if(codigoDaTecla === controle.direita){
+						controle.presDireita = false
+					}
+					if(codigoDaTecla === controle.cima){
+						controle.presCima = false
+					}
+					if(codigoDaTecla === controle.baixo){
+						controle.presBaixo = false
+					}
+				}
+			}
+
+			const jogador = {
+				sprite: imgJogador,
+				x: 40,
+				y: 200,
+				largura: 32,
+				altura: 64,
+				velocidade: 5,
+				aceleracao: 2,
+				gravidade: 0.25,
+				chao: false,
+				desenhar: function(){
+					ctx.drawImage(
+						jogador.sprite,
+						jogador.x, 
+						jogador.y, 
+						jogador.largura,
+						jogador.altura)
+				},
+				mover: function(){
+
+					// Protótipo de gravidade.
+					jogador.aceleracao = jogador.aceleracao + 0.25
+					jogador.y = jogador.y + jogador.aceleracao
+
+					if(controle.presEsquerda){
+						jogador.x = jogador.x - jogador.velocidade
+					}
+					if(controle.presDireita){
+						jogador.x = jogador.x + jogador.velocidade
+					}
+					if(controle.presCima){
+						jogador.y = jogador.y - jogador.velocidade
+					}
+					if(controle.presBaixo){
+						jogador.y = jogador.y + jogador.velocidade
+					}
+
+
+					// Colisão.
+					for(let i in colisores){
+						let bloco = colisores[i]
+						if(bloco.visivel){
+							colisorRetangular(jogador,bloco)
+						}
+					}
+
+				},
+				//Colisão: encontrando o centro dos objetos.
+				metadeDaLargura: function(){
+					return jogador.largura / 2
+				},
+				metadeDaAltura: function(){
+					return jogador.altura / 2
+				},
+				centroX: function(){
+					return jogador.x + jogador.metadeDaLargura()
+				},
+				centroY: function(){
+					return jogador.y + jogador.metadeDaAltura()
+				}
+
+			}
+
+			const fundo1 = {
+				sprite: malha,
+				x: 0,
+				y: 0,
+				largura: 1600,
+				altura: 800,
+				desenhar: function(){
+					ctx.drawImage(
+						fundo1.sprite,
+						fundo1.x,
+						fundo1.y,
+						fundo1.largura,
+						fundo1.altura
+					)
+				}
+			}
+
+			// [Funções principais do jogo]
+
+			const BlocoColisor = function(x,y,largura,altura){
+				
+				this.x = x
+				this.y = y
+				this.largura = largura
+				this.altura = altura
+				this.visivel = true
+
+				this.metadeDaLargura = function(){
+                	return this.largura / 2
+				}
+				this.metadeDaAltura = function(){
+					return this.altura / 2
+				}
+				this.centroX = function(){
+					return this.x + this.metadeDaLargura()
+				}
+				this.centroY = function(){
+					return this.y + this.metadeDaAltura()
+				}
+
+			}
+
+
+			function colisorRetangular(r1,r2){
+				// r1 --> objeto bloqueado.
+				// r2 --> objeto bloqueador/parede.
+
+				// Distância dos centros em x.
+				let catX = r1.centroX() - r2.centroX()
+
+				// Distância dos centros em y.
+				let catY = r1.centroY() - r2.centroY()
+
+				// Soma das metades das larguras e alturas dos objetos.
+				let somaDasMetadesDasLarguras = r1.metadeDaLargura() + r2.metadeDaLargura()
+				let somaDasMetadesDasAlturas = r1.metadeDaAltura() + r2.metadeDaAltura()
+
+				// Se a distância entre os centros
+				// dos objetos for menor que a soma
+				// das larguras há colisão.
+				if(Math.abs(catX) < somaDasMetadesDasLarguras  && Math.abs(catY) < somaDasMetadesDasAlturas){
+
+
+					
+				/*
+					// Torna o objeto invisível ao tocar.
+					r2.visivel = false
+
+					// Torna o objeto tocado visível novamente depois de um segundo
+					setTimeout(function(){r2.visivel = true},1000)
+				*/
+
+					// Bloqueador de blocos.              
+					let sobreposicaoX = somaDasMetadesDasLarguras - Math.abs(catX)
+					let sobreposicaoY = somaDasMetadesDasAlturas - Math.abs(catY)
+
+
+					if(sobreposicaoX >= sobreposicaoY){//Colisão por cima ou por baixo.
+						
+						if(catY > 0){// Por cima.
+							r1.y = r1.y + sobreposicaoY
+							jogador.chao = true
+						}else{// Por baixo.
+							r1.y = r1.y - sobreposicaoY
+						}
+
+					}else{//Colisão pela esquerda ou pela direita
+
+						if(catX > 0){// Pela esquerda.
+							r1.x = r1.x + sobreposicaoX
+						}else{// Pela direita.
+							r1.x = r1.x - sobreposicaoX
+						}
+
+						
+					}
+
+				}else{
+					jogador.chao = false
+				}
+
+			}
+
+
+
+
+
+
+			
+			function renderizar(){
+				ctx.clearRect(0,0,cnv.width, cnv.height)
+				fundo1.desenhar()
+				mundo1.desenhar()
+				jogador.desenhar()
+			}
+
+			function atualizar(){
+				jogador.mover()
+			}
+
+			function loop(){
+				atualizar()
+				renderizar()
+				requestAnimationFrame(loop,cnv)
+			}
+			window.addEventListener("keydown",controle.pressionarTecla,false)
+			window.addEventListener("keyup",controle.liberarTecla,false)
+			requestAnimationFrame(loop,cnv)
+
+
+
+/* Retângulo 32x32 inicial com px:[1600x800] ou  blocos:[50x25]
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+*/
+
+
+
+	</script>
+</body>
+</html>

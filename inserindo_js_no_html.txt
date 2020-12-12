@@ -1,0 +1,30 @@
+Inserindo o js na página HTML
+=============================
+
+Inline
+------
+Inserir o script diretamente na seção body do documento. Trata-se de
+prática não recomendada de acordo com o princípio da separação das camadas
+de desenvolvimento.
+    
+    Exemplo 1:
+    <button type="button" onclick="alert(Olá visitante!')">
+
+Incorporado
+-----------
+Inserir o script na seção head do documento.
+
+    Exemplo 1:
+    <script type="text/javascript">
+        // script vai aqui
+    </script>
+
+Externo
+-------
+Escrever o script em um arquivo externo e inserir com um link na
+seção head do documento.
+
+    Exemplo 1:
+    <head>
+        <script type="text/javascript" src="scripts/meu_script.js"></script>
+    </head>

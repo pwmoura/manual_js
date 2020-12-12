@@ -1,0 +1,78 @@
+Métodos de strings:
+-------------------
+   
+    Representação:
+    --------------
+    As seguintes sintaxes são válidas para escrever as strings mostradas:
+        "Os livros da editora O'Reilly são muito bons." // aspas duplas fora e simples dentro
+        'Os livros da editora O'Reilly são muito bons.' // aspas simples fora e simples escapadas dentro
+        'Mac\'Neil disse: "Vim para ficar".'' // aspas simples fora, duplas e simples escapadas dentro
+        "Mac'Neil disse: \"Vim para ficar\"." // aspas duplas fora, duplas escapadas e simples dentro
+
+    length:
+    -------
+    Propriedade length retorna o tamanho de uma string:
+        var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var sln = txt.length;
+    
+
+    indexOf()
+    -----------
+    método retorna o índice de (a posição de) a firstocorrência de um texto especificado em uma string. Retorna -1 se o texto não for encontrado. No exemplo a seguir retorna 7:
+    
+        Ex.:
+        var str = "Please locate where 'locate' occurs!";
+        var pos = str.lastIndexOf("locate");
+
+        Ex.:
+        Ambos os métodos (indexOf() e lastIndexOf()) aceitam um segundo parâmetro como a posição inicial da pesquisa:
+        var str = "Please locate where 'locate' occurs!";
+        var pos = str.indexOf("locate", 15);
+
+    lastIndexOf()
+    -------------
+    Método retorna o índice da última ocorrência de um texto especificado em uma string. Retornam -1 se o texto não for encontrado.
+    var str = "Please locate where 'locate' occurs!";
+    var pos = str.lastIndexOf("locate");
+
+    search()
+    --------
+    Método pesquisa uma string por um valor especificado e retorna a posição da correspondência:
+
+        Ex.:
+        var str = "Please locate where 'locate' occurs!";
+        var pos = str.search("locate");
+
+        Ex.:
+        <script>
+            var str = "Please locate where 'locate' occurs!";
+            var pos = str.search("locate");
+            document.getElementById("demo").innerHTML = pos;
+        </script>
+    
+    Observação:
+        
+        1. Os dois métodos indexOf()e search()são iguais?
+        2. Eles aceitam os mesmos argumentos (parâmetros) e retornam o mesmo valor?
+        
+        Resposta:
+            Os dois métodos não são iguais. Estas são as diferenças:
+                O search() --> método não pode pegar um segundo argumento de posição inicial.
+                O indexOf() --> método não pode obter valores de pesquisa poderosos (expressões regulares).
+    
+    .toUpperCase()
+    --------------
+    Coloca a string toda em maiúscula.
+		<script>
+			txt1 = "Wenys"
+			alert(txt1.toUpperCase())
+		</script>
+    
+    .toLowerCase()
+    --------------
+    Coloca tudo em letra minúscula
+        <script>
+			txt1 = "Wenys"
+			alert(txt1.toLowerCase())
+		</script>
+

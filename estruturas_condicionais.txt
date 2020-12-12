@@ -1,0 +1,86 @@
+Estruturas condicionais:
+------------------------
+
+    if
+    ---
+    para especificar um bloco de código a ser executado, se uma condição especificada for verdadeira
+        
+        Modelo:
+            if (condition) {
+                // block of code to be executed if the condition is true
+            }
+        
+        Ex.:
+            Faça uma saudação "Bom dia" se a hora for inferior a 18:00:
+
+            if (hour < 18) {
+                greeting = "Good day";
+            }
+        
+    else 
+    ----
+    para especificar um bloco de código a ser executado, se a mesma condição for falsa
+        
+        Modelo:
+            if (condition) {
+                //  block of code to be executed if the condition is true
+            } else { 
+                //  block of code to be executed if the condition is false
+            }
+
+        Ex.:
+            Se a hora for menor que 18, crie uma saudação "Bom dia", caso contrário, "Boa noite":
+
+            if (hour < 18) {
+                greeting = "Good day";
+            } else {
+                greeting = "Good evening";
+            }
+
+        else if
+        -------
+        para especificar uma nova condição para testar, se a primeira condição for falsa.
+
+            Modelo:
+                if (condition1) {
+                    //  block of code to be executed if condition1 is true
+                } else if (condition2) {
+                    //  block of code to be executed if the condition1 is false and condition2 is true
+                } else {
+                    //  block of code to be executed if the condition1 is false and condition2 is false
+                }
+
+            Ex.:
+                Se o tempo for inferior a 10:00, crie uma saudação "Bom dia", se não, mas o tempo é inferior a 20:00, crie uma saudação "Bom dia", caso contrário, uma "Boa noite":
+
+                if (time < 10) {
+                    greeting = "Good morning";
+                } else if (time < 20) {
+                    greeting = "Good day";
+                } else {
+                    greeting = "Good evening";
+                }
+                
+                Resultado da saudação será: Good day            
+        
+        switch
+        -------
+        Para especificar muitos blocos de código alternativos a serem executados. 
+            # getDay() --> método retorna o dia da semana
+            # Date() --> a data atual. 
+            # default --> palavra-chave especifica o código a ser executado se não houver correspondência de caso. 
+            # break --> Quando o JavaScript alcança uma break palavra - chave, ela sai do bloco de switches. Isto irá parar a execução de dentro do bloco.
+        
+            Ex.:
+                switch (new Date().getDay()) {
+                    case 4:
+                    case 5:
+                        text = "Soon it is Weekend";
+                        break; 
+                    case 0:
+                    case 6:
+                        text = "It is Weekend";
+                        break;
+                    default: 
+                        text = "Looking forward to the Weekend";
+                }

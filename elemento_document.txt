@@ -1,0 +1,390 @@
+﻿Elemento Document: DOM
+=======================
+DOM - MODELO DE OBJETOS DO DOCUMENTO (DOCUMENTO HTML - SITE)
+
+	# Acessando informações do DOM
+	------------------------------
+
+		document.charset
+		----------------
+		Ver o charset do documento.
+		alert(document.charset)
+
+
+		document.URL
+		------------
+		alert(document.URL)
+
+
+		document.documentElement.nodeName
+		---------------------------------
+		Retorna o elemento HTML, essa propriedade é somente para leitura.
+		
+			<p>Click the button to display the node name of the documentElement.</p>
+			<button onclick="myFunction()">Try it</button>
+			<p id="demo"></p>
+
+			<script>
+				function myFunction() {
+				var x = document.documentElement.nodeName;
+				document.getElementById("demo").innerHTML = x;
+			}
+			</script>
+
+
+	
+
+
+	# Selecionando elementos do DOM
+	-------------------------------
+
+        document.getElementById("nomeDoId")
+        -------------------------
+        Seleciona um elemento com um ID específico no Dom. Formulário também pode ser acessado pelo atributo name de cada tag.
+            function inserir(){
+                var formulario = document.getElementById("formulario");
+                formulario.ctest.value=10;
+            }
+        
+
+		getElementsByClassName(nameDaClasse)
+		----------------------------
+			
+			Ex.:
+				Acessando por indice:
+					<script type="text/javascript">
+						console.log(
+							document.getElementsByClassName("urso")[0]
+						)
+					</script>
+
+			Ex.:
+				Acessando e modificando várias classes ao mesmo tempo:
+					
+					<div class="urso">ruuu</div>
+					<div class="urso">ruuu</div>
+					<div class="urso">ruuu</div>
+					<div class="sherk">faz urruuu</div>
+					<div class="sherk">faz urruuu</div>
+					<div class="sherk">faz urruuu</div>
+					<div class="sherk">faz urruuu</div>
+
+
+					<script type="text/javascript">
+
+						//declaração das variáveis.
+						var classe = document.getElementsByClassName("urso")
+						var i = 0
+						
+						while(classe[i]){
+							classe[i].innerHTML = "Fui mudado com sucesso!"
+							i++        
+						}
+
+					</script>
+
+					Resultado:
+						Fui mudado com sucesso!
+						Fui mudado com sucesso!
+						Fui mudado com sucesso!
+						faz urruuu
+						faz urruuu
+						faz urruuu
+						faz urruuu
+
+
+		getElementsByTagName(name);
+		---------------------------
+
+			Seleciona elementos pela tag:
+				<div>
+					<p>Exemplo de um testo 01</p>
+					<p>Exemplo de um testo 02</p>
+					<p>Exemplo de um testo 03</p>
+					<p>Exemplo de um testo 04</p>
+					<p>Exemplo de um testo 05</p>
+				</div>
+			
+				<script>
+					p = document.getElementsByTagName("p")
+					i=0
+					while (p[i]) {
+						p[i].innerHTML = "Alteração " + i
+						i++
+					}
+				</script>
+
+
+		document.querySelector('nome da tag')
+		-------------------------------------
+		Procura uma tag no documento.
+
+				var myHeading = document.querySelector('h1');
+				myHeading.textContent = 'Hello world!';
+
+					.textContent --> insere o conteúdo na tag selecionada.
+					.innerHTML --> Insere conteúdo entre a tag html.
+
+
+
+    # Manipulação de elementos no Dom:
+    ----------------------------------
+    
+        document.write
+        --------------
+		insere conteúdo no documeto.
+            <script>
+                
+                nome = prompt('Qual é o seu nome?');
+                idade = prompt('Qual a sua idade?');
+                
+                //Dessa forma não limpa a tela.
+                window.document.write(
+                    "<p>Então seu nome é " + nome + " e tem " + idade  + " anos.</p>" 
+                );
+                
+            </script>
+
+
+
+		Criação de elementos dentro do DOM:
+		-----------------------------------
+
+				# OBS.: Para criação de elementos/atributos:
+					1. devemos primeiro criar o elemento.
+					2. Viculá-los a algum nó (texto/conteúdo da tag).
+					3. Cria-se um atributo ou class.
+					4. vincula-se o atributo e/ou class ao elemento.
+					5. Acrescenta o elemento ao Dom.
+
+
+			.createElement()
+			---------------
+			Cria uma tag html.
+
+				<script>
+
+					// 1. criou-se o elemento
+					h1 = document.createElement("h1")
+					
+					//2. Criou o conteúdo do nó.
+					txt = document.createTextNode("Olá")
+
+					//3. Coloca o nó dentro da tag.
+					h1.appendChild(txt)
+
+					//4. Coloca o elemento no DOM.
+					document.getElementsByTagName("body")[0].appendChild(h1)
+					
+				</script>
+
+
+			.createTextNode()
+			-----------------
+			Cria os nós (somente texto) para ser colocado em algum elemento. Se tags forem colocadas nesse elemento ele transformará em texto.
+				<script>
+
+					// 1. criou-se o elemento
+					h1 = document.createElement("h1")
+					
+					//2. Criou o conteúdo do nó.
+					txt = document.createTextNode("Olá")
+
+					//3. Coloca o nó dentro da tag.
+					h1.appendChild(txt)
+
+					//4. Coloca o elemento no DOM.
+					document.getElementsByTagName("body")[0].appendChild(h1)
+					
+				</script>
+
+
+			.className()
+			------------
+			Atribui uma class a um elemento html.
+
+
+			.appendChild()
+			--------------
+			vincula nós ou tags a outros elementos colocando-os como filhos.
+
+				<script>
+
+					// 1. criou-se o elemento
+					h1 = document.createElement("h1")
+					
+					//2. Criou o conteúdo do nó.
+					txt = document.createTextNode("Olá")
+
+					//3. Coloca o nó dentro da tag.
+					h1.appendChild(txt)
+
+					//4. Coloca o elemento no DOM.
+					document.getElementsByTagName("body")[0].appendChild(h1)
+					
+				</script>
+
+
+			.removeChild(element)
+			---------------------
+			Remover um elemento HTML: document.removeChild(element);
+			
+			
+			.replaceChild(element)
+			----------------------
+			Substitua um elemento HTML: document.replaceChild(element)
+
+
+			.createAttribute("nomeDoAtributo")
+			----------------------------------
+			Seleciono o elemento que pretento anexar o atributo.
+			Declaro por meio do Creat Attribute o nome do novo atributo (class, id, src, title, dentre outros).
+			
+				Ex.:
+
+					<!DOCTYPE html>
+					<html lang="pt-br">
+					<head>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<meta http-equiv="X-UA-Compatible" content="ie=edge">
+						<title>Criando atributos em tags html</title>
+						<link rel="stylesheet" href="css/md.css">
+						<style>
+							body{
+								text-align: center;
+							}
+							.ligado{
+								color: red;
+							}
+							
+						</style>
+					</head>
+					<body>
+						<h1>Esse é um elemento que irá ser mudado</h1>
+						<p class="mt-10"> <a onclick="ligar()" class="bt-1">Ligar (colocar a classe)</a></p>
+						<script>
+							function ligar(){
+								var h1 = document.getElementsByTagName("h1")[0] //seleciona o elemento h1.
+								var att = document.createAttribute("class") //cria o atributo class.
+								att.value = "ligado" // Passa o valor da classe.
+								h1.setAttributeNode(att) //Coloca o atributo no h1.
+							}
+						</script>
+					</body>
+					</html>
+
+
+			.setAttributeNode()
+			-------------------
+			Coloca o atributo na tag. Como no exempolo acima:
+
+				Ex.:
+
+					<!DOCTYPE html>
+					<html lang="pt-br">
+					<head>
+						<meta charset="UTF-8">
+						<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<meta http-equiv="X-UA-Compatible" content="ie=edge">
+						<title>Criando atributos em tags html</title>
+						<link rel="stylesheet" href="css/md.css">
+						<style>
+							body{
+								text-align: center;
+							}
+							.ligado{
+								color: red;
+							}
+							
+						</style>
+					</head>
+					<body>
+						<h1>Esse é um elemento que irá ser mudado</h1>
+						<p class="mt-10"> <a onclick="ligar()" class="bt-1">Ligar (colocar a classe)</a></p>
+						<script>
+							function ligar(){
+								var h1 = document.getElementsByTagName("h1")[0] //seleciona o elemento h1.
+								var att = document.createAttribute("class") //cria o atributo class.
+								att.value = "ligado" // Passa o valor da classe.
+								h1.setAttributeNode(att) //Coloca o atributo no h1.
+							}
+						</script>
+					</body>
+					</html>
+
+
+			Adicionar classe em um elemento html:
+			-------------------------------------
+			elemento.classList.add('red');
+
+
+			Remover classe de um elemento html:
+			-----------------------------------
+			elemento.classList.remove('classe')
+
+
+
+			Alterando atributos existentes:
+			-------------------------------
+			element.attribute = new value;
+			document.getElementsByTagName("img")[0].src = "/images/2.jpg"
+
+
+			Inserindo texto em um elemento: .innerText = "Texto aqui!"
+			----------------------------------------------------------
+			Pode ser usado também para pegar o texto de uma tag ou alterá-lo.
+			document.getElementById("e1).innerText --> pega o texto do elemento
+			document.getElementById("e1).innerText = "Olá mundo." --> Altera o texto do elemento.
+
+
+			Inserindo código html no documento:
+			-----------------------------------
+			Insere código html entre tags no documento.
+
+				Ex.:
+
+					Head:
+					-----
+					<script>
+						function trocar(){
+							document.getElementById("titulo").innerHTML = "Parabéns, você adicionou o texto!";
+						}
+					</script>
+					
+					
+					Body:
+					-----
+					<h1 id="titulo"></h1>
+					<input type="button" onclick="trocar();" value="Adicionar título"/>
+				
+				
+				
+				Ex.:
+				
+					Head:
+					-----
+					<script>
+						function trocar(){
+							var t1 = document.getElementById("titulo")
+							t1.innerHTML = "Parabéns, você adicionou o texto!";
+						}
+					</script>
+					
+					
+					Body:
+					-----
+					<h1 id="titulo"></h1>
+					<input type="button" onclick="trocar();" value="Adicionar título"/>
+
+
+			Alterando CSS dos elementos do documento:
+			-----------------------------------------
+			element.style.property = "new style";
+			document.getElementById("titulo").style.color = "#000"
+
+
+
+	Referências:
+	------------
+	  1. W3chool: http://www.w3schools.com/js/js_htmldom_document.asp

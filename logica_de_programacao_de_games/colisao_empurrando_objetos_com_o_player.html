@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colisão - Bloqueando player nos limites do canvas</title>
+    <style>
+        canvas{
+            display: block;
+            margin: 0 auto;
+            margin-top: 50px;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="640" height="400" id="palco"></canvas>
+    <script>
+
+        // [Variáveis/Constantes]
+        let cnv = document.getElementById("palco")
+        let ctx = cnv.getContext("2d")
+
+
+        // [Coleção de Arrays]
+        let sprites = [] // --> tudo que for desenhavel
+        let blocks = [] // --> tudo que será sólido.
+
+
+        // [Objetos]
+        const Controle = {
+            cima: 38,
+            baixo: 40,
+            esquerda: 37,
+            direita: 39,
+            enter: 13,
+            presCima: false,
+            presBaixo: false,
+            presDireita: false,
+            presEsquerda: false,
+            presEnter: false,
+            pressionarTecla(tecla){
+                let codigoDaTecla = tecla.keyCode
+                if(codigoDaTecla === Controle.esquerda && codigoDaTecla !== Controle.direita){
+                    Controle.presEsquerda = true
+                }
+                if(codigoDaTecla === Controle.direita && codigoDaTecla !== Controle.esquerda){
+                    Controle.presDireita = true
+                }
+                if(codigoDaTecla === Controle.cima && codigoDaTecla !== Controle.baixo){
+                    Controle.presCima = true
+                }
+                if(codigoDaTecla === Controle.baixo && codigoDaTecla !== Controle.cima){
+                    Controle.presBaixo = true
+                }
+                if(codigoDaTecla === Controle.enter){
+                    Controle.presEnter = true
+                }
+            },
+            liberarTecla(tecla){
+                let codigoDaTecla = tecla.keyCode
+                if(codigoDaTecla === Controle.esquerda && codigoDaTecla !== Controle.direita){
+                    Controle.presEsquerda = false
+                }
+                if(codigoDaTecla === Controle.direita && codigoDaTecla !== Controle.esquerda){
+                    Controle.presDireita = false
+                }
+                if(codigoDaTecla === Controle.cima && codigoDaTecla !== Controle.baixo){
+                    Controle.presCima = false
+                }
+                if(codigoDaTecla === Controle.baixo && codigoDaTecla !== Controle.cima){
+                    Controle.presBaixo = false
+                }
+                if(codigoDaTecla === Controle.enter){
+                    Controle.presEnter = false
+                }                
+            }
+        }
+
+
+        // [Funções construtoras]
+        let Sprite = function(x, y, largura, altura, cor){
+            
+            this.x = x
+            this.y = y
+            this.largura = largura
+            this.altura = altura
+            this.cor = cor
+            this.visivel = true
+
+            //Colisão: encontrando o centro dos objetos.
+            this.metadeDaLargura = function(){
+                return this.largura / 2
+            }
+            this.metadeDaAltura = function(){
+                return this.altura / 2
+            }
+            this.centroX = function(){
+                return this.x + this.metadeDaLargura()
+            }
+            this.centroY = function(){
+                return this.y + this.metadeDaAltura()
+            }
+        }
+
+        function colisorRetangular(r1,r2){
+            // r1 --> objeto bloqueado.
+            // r2 --> objeto bloqueador/parede.
+
+            // Distância dos centros em x.
+            let catX = r1.centroX() - r2.centroX()
+
+            // Distância dos centros em y.
+            let catY = r1.centroY() - r2.centroY()
+
+            // Soma das metades das larguras e alturas dos objetos.
+            let somaDasMetadesDasLarguras = r1.metadeDaLargura() + r2.metadeDaLargura()
+            let somaDasMetadesDasAlturas = r1.metadeDaAltura() + r2.metadeDaAltura()
+
+            // Se a distância entre os centros
+            // dos objetos for menor que a soma
+            // das larguras há colisão.
+            if(Math.abs(catX) < somaDasMetadesDasLarguras  && Math.abs(catY) < somaDasMetadesDasAlturas){
+                
+
+                /*
+                    // Torna o objeto invisível ao tocar.
+                    r2.visivel = false
+
+                    // Torna o objeto tocado visível novamente depois de um segundo
+                    setTimeout(function(){r2.visivel = true},1000)
+                */
+                
+                
+                
+                // Bloqueador de blocos.              
+                let sobreposicaoX = somaDasMetadesDasLarguras - Math.abs(catX)
+                let sobreposicaoY = somaDasMetadesDasAlturas - Math.abs(catY)
+
+
+                if(sobreposicaoX >= sobreposicaoY){//Colisão por cima ou por baixo.
+                    
+                    if(catY > 0){// Por cima.
+                        r1.y = r1.y + sobreposicaoY
+                    }else{// Por baixo.
+                        r1.y = r1.y - sobreposicaoY
+                    }
+
+                }else{//Colisão pela esquerda ou pela direita
+
+                    if(catX > 0){// Pela esquerda.
+                        r1.x = r1.x + sobreposicaoX
+                    }else{// Pela direita.
+                        r1.x = r1.x - sobreposicaoX
+                    }
+
+                    1
+                }
+                
+
+
+                
+                
+            }
+
+        }
+
+
+        // [Criação de blocos]
+        let personagem = new Sprite(0,0,34,34,"yellow")
+        personagem.velocidade = 4
+        sprites.push(personagem)
+
+        let bloco1 = new Sprite(120,300,40,80,"red")
+        sprites.push(bloco1)
+        blocks.push(bloco1)
+
+        let bloco2 = new Sprite(400,150,100, 50, "black")
+        sprites.push(bloco2)
+        blocks.push(bloco2)
+
+
+        // [Funções Principais]
+        function renderizar(){
+            ctx.clearRect(0, 0, cnv.width, cnv.height)
+            for(let i in sprites){
+                let sprite = sprites[i]
+                if(sprite.visivel){
+                    ctx.fillStyle = sprite.cor
+                    ctx.fillRect(
+                        sprite.x,
+                        sprite.y,
+                        sprite.largura,
+                        sprite.altura
+                    )
+                }
+            }
+        } 
+        function atualizar(){
+            mover()
+        }
+        function loop(){
+            window.requestAnimationFrame(loop,cnv)
+            atualizar()
+            renderizar()
+        }
+
+
+        // [Funções auxiliares]
+
+        function mover(){
+            if(Controle.presCima){
+                personagem.y = personagem.y - personagem.velocidade 
+            }
+            if(Controle.presBaixo){
+                personagem.y = personagem.y + personagem.velocidade
+            }
+            if(Controle.presEsquerda){
+                personagem.x = personagem.x - personagem.velocidade
+            }
+            if(Controle.presDireita){
+                personagem.x = personagem.x + personagem.velocidade
+            }
+            
+            // Limites da tela.
+            personagem.x = Math.max(0 ,Math.min(cnv.width - personagem.largura, personagem.x))
+            personagem.y = Math.max(0 ,Math.min(cnv.height - personagem.altura, personagem.y))
+
+            // Colisão.
+            for(let i in blocks){
+                let bloco = blocks[i]
+                if(bloco.visivel){
+                    // Invertendo o personagem com o bloco nessa função
+                    // o personagem passa empurrar os blocos que ele toca.
+                    colisorRetangular(bloco,personagem)
+                }
+            }
+
+        }
+
+
+        // [Entradas de eventos]
+        window.addEventListener("keydown",Controle.pressionarTecla,false)
+        window.addEventListener("keyup",Controle.liberarTecla,false)
+        
+        
+        // [Linha de comando]
+        window.requestAnimationFrame(loop,cnv)
+  
+    </script>
+</body>
+</html>

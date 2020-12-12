@@ -1,0 +1,13 @@
+Criando Constantes:
+------------------
+Elas não se modificam.
+
+const valor = 10;
+    document.write("O valor constante é " + valor);
+
+
+Exemplo 01:
+-----------
+const x = 5;
+const y = 6;
+var z = x + y;
