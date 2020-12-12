@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+
+	<title>Titulo do documento</title>
+	
+	<!-- Meta tags -->
+	<meta charset="utf-8">
+	<meta name="description" content="Descrição breve da página">
+	<meta name="keywords" content="palavras-chave separadas por vírgula sem espaço">
+	<meta name="author" content="Nome do autor">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- styles -->
+    <link href="./css/reset.css" rel="stylesheet" Type="text/css" media="all">
+    <link href="./css/fale-conosco.css" rel="stylesheet" Type="text/css" media="all">
+
+	<!-- scripts -->
+	<script type="text/javascript" src="./js/fale-conosco.js"></script>
+	
+</head>
+<body>
+	<form id="frm-fale-conosco" class="border-1" action="fale-conosco.update.php" method="POST">
+		<h1 class="text-center">Fale Conosco</h1>
+		<input class="input-1 border-1" type="text" name="tNome" id="cnome" placeholder="Digite seu nome">
+		<input type="submit" class="bt-1" id="bt-fale-conosco" value="Acessar">
+	</form>
+	<p class="text-center" id="retorno">Retorno do formulário!</p>
+</body>
+</html>

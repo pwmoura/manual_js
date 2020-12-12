@@ -1,0 +1,53 @@
+@charset "utf-8";
+/*
+@Autor: Wenys Martins de Moura.
+@Contato: wmm.moura@gmail.com 
+@Descrição: Sistema de Fale Conosco 
+*/
+/*recalcula o padding em %*/
+*, *:before, *:after {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+/* Reset da página */
+*{
+    margin: 0px; 
+    padding: 0px; 
+    border: 0px;
+    font-weight: normal;
+    line-height: 100%;
+}
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+img{
+    max-width: 100%;
+}
+.text-center{
+    text-align: center;
+}
+#frm-fale-conosco{
+    max-width:450px;
+
+    display: block;
+    margin: auto;
+    padding: 20px;
+}
+.input-1{
+    width: 100%;
+    padding: 10px;
+}
+.border-1{
+    border-radius: 4px;
+    border: 1px solid #000;
+}
+.bt-1{
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+    background-color: darkcyan;
+    color: #FFF;
+}
