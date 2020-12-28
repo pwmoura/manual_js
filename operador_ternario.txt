@@ -1,0 +1,20 @@
+Operador Ternário:
+------------------
+    Sintaxe
+    condition ? expr1 : expr2 
+
+    Exemplo:
+    --------
+    idade > 18 ? location.assign("continue.html") : stop = true;
+
+    Exemplo 2:
+    ----------
+    var stop = false, age = 23;
+
+    age > 18 ? (
+        alert("OK, you can go."),
+        location.assign("continue.html")
+    ) : (
+        stop = true,
+        alert("Sorry, you are much too young!")
+    );
