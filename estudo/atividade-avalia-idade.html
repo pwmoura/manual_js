@@ -3,9 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/bulma.css">
+    <title>Atividade 1: Reconhecer a faixa etária do usuário</title>
+    <style type="text/css">
+        .t{
+            border: 1px solid red;
+        }
+
+    </style>
 </head>
 <body>
-    
+
+    <!-- Formulário -->
+    <div class="container is-max-desktop mt-6">
+
+        <div class="notification is-primary">
+            
+            <h1 class="is-size-1 mb-4">Qual a sua faixa etária?</h1>
+
+            <article class="message is-primary">
+                <div class="message-body">
+                    Bem vindo ao sistema de avaliação de faixa etária, digite sua idade abaixo e veja sua faixa etária.
+                </div>
+            </article>
+
+            <div class="control mt-4">
+                <input class="input" type="text" placeholder="Digite aqui a sua idade..." id="idade">
+            </div>
+
+            <div class="control mt-4">
+                <button class="button is-danger" id="bt-avaliar-idade">Avaliar!</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- js -->
+    <script type="text/javascript">
+        
+        //Declaração das variáveis
+        let campoIdade, idade, article, btAvaliar, retorno, msg
+        
+        //Selecionar os elementos do formulário
+        campoIdade = document.getElementById('idade')
+        btAvaliar = document.getElementById('bt-avaliar-idade')
+        article = document.querySelector('.message-body')
+
+        //Avaliar as condições:
+        function avaliarFaixaEtaria(){
+            
+            msg = "Sua faixa etária é "
+            idade = parseInt(campoIdade.value)
+
+            if(idade < 0)
+            {
+                retorno = ""
+                msg = "Valor informado está inválido."
+            }
+            else if(idade > 0 && idade < 15)
+            {
+                retorno = "criança"
+            }
+            else if(idade >= 15 && idade < 30)
+            {
+                retorno = "jovem"
+            }
+            else if(idade >= 30 && idade < 60)
+            {
+                retorno = "adulto"
+            }
+            else if(idade >= 60)
+            {
+                retorno = "idoso"
+            }
+
+            //Cria a mensagem de retorno ao usuário
+            article.innerText = msg + retorno
+            campoIdade.value = null 
+        }
+
+        //Adiciona o evento ao botão.
+        btAvaliar.addEventListener('click', avaliarFaixaEtaria)
+
+    </script>
+
 </body>
 </html>
