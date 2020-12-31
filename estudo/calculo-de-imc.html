@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/ws-style.css">
+    <title>Cálculo do IMC</title>
+</head>
+<body>
+    <div class="ctn-450 bd-outline p-2 mt-6">
+        
+        <h1 class="t-3 mb-2">Cálculo de IMC</h1>
+        <p class="msg-light mb-2">
+            Calcule seu Índice de Massa corporal e saiba se está acima ou abaixo do peso.
+        </p>
+
+        
+        <div class="fm-group mb-2">
+            <label for="nome" class="label">Nome:</label>
+            <input 
+                type="text" 
+                id="nome" 
+                name="nome" 
+                class="input-outline" 
+                placeholder="Digite seu nome..."
+            >
+        </div>
+
+        <div class="fm-group mb-2">
+            <label for="altura" class="label">Altura:</label>
+            <input 
+                type="text" 
+                id="altura" 
+                name="altura" 
+                class="input-outline" 
+                placeholder="Digite sua altura em cm..."
+            >
+        </div>
+
+        <div class="fm-group mb-2">
+            <label for="massa" class="label">Massa:</label>
+            <input 
+                type="text" 
+                id="massa" 
+                name="massa" 
+                class="input-outline" 
+                placeholder="Digite sua massa em kg..."
+            >
+        </div>
+
+        <div class="fm-group">
+            <button id="imc-bt" class="bt-outline bt-outline-bg-light">Calcular!</button>            
+        </div>
+
+    </div>
+</body>
+    <script type="text/javascript">
+        
+        // Variaveis imc
+        let imcNome, imcAltura, imcMassa, imcBt, imcMsg, msg
+        
+        // Acessa o botão
+        imcBt = document.getElementById('imc-bt')
+        imcMsg = document.querySelector('.msg-light')
+
+        function calcularImc(){
+            
+            // Atribuições imc
+            imcNome = document.getElementById('nome').value
+            imcAltura = parseFloat(parseInt(document.getElementById('altura').value) / 100)
+            imcMassa = document.getElementById('massa').value
+
+            imc = imcMassa / (imcAltura * imcAltura)
+            imc = imc.toFixed(1)
+
+            if(imc < 18.5){
+                msg = "abaixo do peso"
+            }else if(imc >= 18.5 && imc < 25){
+                msg = "peso normal"
+            }else if(imc >= 25 && imc < 30){
+                msg = "sobrepeso"
+            }else if(imc >= 30 && imc < 35){
+                msg = "obesidade grau 1"
+            }else if(imc >= 35 && imc < 40){
+                msg = "obesidade grau 2"
+            }else if(imc >= 40){
+                msg = "obesidade grau 3"
+            }
+
+            imcMsg.innerHTML = `Olá <strong>${imcNome}</strong>, seu IMC é <strong>${imc}</strong>, seu resustado é: <strong>${msg}</strong>`
+            
+        }
+
+        // Atribui o evento ao botão imc
+        imcBt.addEventListener('click',calcularImc)
+
+    </script>
+</html>

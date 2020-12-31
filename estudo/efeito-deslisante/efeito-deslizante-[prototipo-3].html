@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efeito troca de Slide - Tentativa 01</title>
+    <style type="text/css">
+
+        /*
+        ########################################
+        Nesse eveito foram criados os seguintes elementos html:
+         --> um container: div
+         --> Um elemento: ul
+         --> Mais de um elemento: li
+         
+         Mecânica do efeito:
+         Elemento ul é maior que o elemento div e se movimenta levando consigo os
+         lis, cada movimento diminui 100% da propriedade margin-left causando o efeito de movimentação para a esquerda.
+        ########################################
+        */
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100vh;
+            width: 100vw;
+            font-size: 100%;
+            font-size: 16px;
+            font-family: sans-serif;
+            color:rgb(160, 157, 157);
+        }
+        h1,h2,h3,h4,h5,h6,p{
+            font-weight: normal;
+            font-style: normal;
+            font-variant: normal;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        a{
+            text-decoration: none;
+            color:aqua;
+        }
+        a:hover{
+            color:rgb(3, 218, 218);
+        }
+        .ul-box{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        /* Slider-1
+        ########################### */
+        .slider-1, .li-slider{
+            border: thin solid rgb(199, 199, 199);
+            border-radius: 5px;
+        }
+        .slider-1{
+            width: 65%;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 20px; /* Deve ser removido */
+            /* overflow: hidden; */
+         }
+        .ul-slider{
+            width: 300%;
+            display: flex;
+            margin-left: 0%; /* Propriedade que move o slider */
+            transition: margin-left 1s;
+        }
+        .li-slider{
+            width: 100%;
+            padding: 20px;
+        }
+        .slider-ctrl{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .bt{
+            padding: 10px;
+            color: inherit;
+            border: thin solid  rgb(199, 199, 199);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .anterior:active, .proximo:active{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-1">
+        <ul class="ul-box ul-slider slider-container">
+            <li class="li-slider slider-elemento">
+                Elemento 01
+            </li>
+            <li class="li-slider slider-elemento">
+                Elemento 02
+            </li>
+            <li class="li-slider slider-elemento">
+                Elemento 03
+            </li>
+        </ul>
+    </div>
+    
+    <div class="slider-ctrl">
+        <button class="bt anterior">Anterior</button> 
+        <button class="bt proximo">Próximo</button>
+    </div>
+    
+    <!-- Instação js -->
+    <script type="text/javascript">
+
+        function Slider1(ul, lis, btProximo, btAnterior){
+            
+            this.tagUl = document.querySelector(ul)
+            this.tagsLis = document.querySelectorAll(lis)
+            this.tagBtProximo = document.querySelector(btProximo)
+            this.tagBtAnterior = document.querySelector(btAnterior)
+            this.inicio = 0
+            this.cont = this.tagsLis.length
+            this.fim = -100 * (this.cont - 1)
+            this.slideVisivel = 0
+
+            this.start = function (){
+                this.tagBtProximo.addEventListener('click', this.moverProximo)
+                this.tagBtAnterior.addEventListener('click', this.moverAnterior)
+            }
+
+            this.moverProximo = function(){
+                let fim = this.fim
+                if(this.slideVisivel > fim){
+                    this.slideVisivel = this.slideVisivel - 100
+                    this.tagUl.style.marginLeft = this.slideVisivel + "%"
+                }
+            }
+
+            this.moverAnterior = function(){
+                let inicio = this.inicio
+                if(this.slideVisivel < inicio){
+                    this.slideVisivel = this.slideVisivel + 100
+                    this.tagUl.style.marginLeft = this.slideVisivel + "%"
+                }
+            }
+
+        }
+
+        teste = new Slider1('.slider-container', '.slider-elemento', '.proximo', '.anterior')
+        teste.start()
+
+ 
+ 
+    </script>
+</body>
+</html>
