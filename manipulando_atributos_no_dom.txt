@@ -1,0 +1,71 @@
+Adicionando classes em elementos:
+---------------------------------
+    
+    // Adicionar uma classe.
+    const data = document.querySelector("h1")
+    data.classList.add("active")
+
+    // Remover uma classe.
+    const data = document.querySelector("h1")
+    data.classList.remove("active")
+
+    // Verifica: se existe a classe retira, se não adiciona a classe.
+    const data = document.querySelector("h1")
+    data.classList.toggle("active")
+
+    // Verifica se existe a classe
+    const data = document.querySelector("h1")
+    console.log(data.classList.contains("active"))
+
+    // Adiciona mais de uma classe
+    const data = document.querySelector("h1")
+    data.classList.add("foo","bar")
+
+    // Verifica a classe que está na posição, nesse caso [1], ou seja, a segunda classe: retorna o nome da classe.
+    const data = document.querySelector("h1")
+    console.log(data.classList.item(1))
+
+
+Utilizando data-attributes:
+---------------------------
+Os data atributos são atributos colocados nas tags html para melhorar o acesso js a tags específicas. Não é suportado em versões anteriores do IE 11 e Mozilla 4.5. Se a quantidade for muito grande pode gerar prejuízo de desempenho, portanto nesse caso podelos utilizar o setAtribute
+    <div>
+        <h1 data-number="1">Olá mundo</h1>
+    </div>
+
+    .dataset.<nome-do-atributo>
+    ---------------------------
+        Acessando o valor de um atributo.
+            // Acessando um atributo.
+            const data = document.querySelector("h1")
+            console.log(data.dataset.number)
+        
+        Alterando valor do data-atributo:
+            // Alterando um atributo.
+            const data = document.querySelector("h1")
+            data.dataset.number = "2"
+            console.log(data.dataset.number)
+    
+    
+.getAttribute("<nome-do-atributo>")
+.setAttribute("<nome-do-atributo>","<novo-valor-do-atributo>")
+.hasAttribute("<nome-do-atributo")
+.removeAttribute("<nome-do-atributo")
+-----------------------------------
+    
+    // Acessando um atributo.
+    const data = document.querySelector("h1")
+    console.log(data.getAttribute('data-number'))
+
+    // Alterando um atributo.
+    const data = document.querySelector("h1")
+    data.setAttribute('data-number', 10)
+    console.log(data.getAttribute("data-number"))
+
+    // Verifica se um atributo existe: [true/false].
+    const data = document.querySelector("h1")
+    console.log(data.hasAttribute('data-number'))
+
+    // Remove um atributo existe.
+    const data = document.querySelector("h1")
+    data.removeAttribute('data-number')
