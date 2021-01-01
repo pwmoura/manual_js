@@ -110,49 +110,126 @@
         <button class="bt anterior">Anterior</button> 
         <button class="bt proximo">Próximo</button>
     </div>
+
+    <br><br><br>
+
+    <div class="slider-1">
+        <ul class="ul-box ul-slider slider-container2">
+            <li class="li-slider slider-elemento2">
+                Elemento 01
+            </li>
+            <li class="li-slider slider-elemento2">
+                Elemento 02
+            </li>
+            <li class="li-slider slider-elemento2">
+                Elemento 03
+            </li>
+        </ul>
+    </div>
+    
+    <div class="slider-ctrl">
+        <button class="bt anterior2">Anterior</button> 
+        <button class="bt proximo2">Próximo</button>
+    </div>
+
+    <br><br><br>
+
+    <div class="slider-1">
+        <ul class="ul-box ul-slider slider-container3">
+            <li class="li-slider slider-elemento3">
+                Elemento 01
+            </li>
+            <li class="li-slider slider-elemento3">
+                Elemento 02
+            </li>
+            <li class="li-slider slider-elemento3">
+                Elemento 03
+            </li>
+        </ul>
+    </div>
+    
+    <div class="slider-ctrl">
+        <button class="bt anterior3">Anterior</button> 
+        <button class="bt proximo3">Próximo</button>
+    </div>
     
     <!-- Instação js -->
     <script type="text/javascript">
 
-        function Slider1(ul, lis, btProximo, btAnterior){
+
+        const sliders = [
+            {
+                ul: ".slider-container",
+                lis: ".slider-elemento",
+                btProximo: ".proximo",
+                btAnterior:".anterior",
+                tagUl: null,
+                tagsLis: null,
+                tagBtProximo: null,
+                tagBtAnterior: null,
+                inicio: null,
+                cont: null,
+                fim: null,
+                slideVisivel: null
+            },
+            {
+                ul: ".slider-container2",
+                lis: ".slider-elemento2",
+                btProximo: ".proximo2",
+                btAnterior:".anterior2",
+                tagUl: null,
+                tagsLis: null,
+                tagBtProximo: null,
+                tagBtAnterior: null,
+                inicio: null,
+                cont: null,
+                fim: null,
+                slideVisivel: null
+            },
+            {
+                ul: ".slider-container3",
+                lis: ".slider-elemento3",
+                btProximo: ".proximo3",
+                btAnterior:".anterior3",
+                tagUl: null,
+                tagsLis: null,
+                tagBtProximo: null,
+                tagBtAnterior: null,
+                inicio: null,
+                cont: null,
+                fim: null,
+                slideVisivel: null
+            }
+        ]
+
+         function sliderStart(){
+            for(let i=0;i < sliders.length ; i++){
+                sliders[i].tagUl = document.querySelector(sliders[i].ul)
+                sliders[i].tagsLis = document.querySelectorAll(sliders[i].lis)
+                sliders[i].tagBtProximo = document.querySelector(sliders[i].btProximo)
+                sliders[i].tagBtAnterior = document.querySelector(sliders[i].btAnterior)
+                sliders[i].inicio = 0
+                sliders[i].cont = sliders[i].tagsLis.length
+                sliders[i].fim = -100 * (sliders[i].cont - 1)
+                sliders[i].slideVisivel = 0
+                sliders[i].tagBtProximo.addEventListener('click', function(){
+                    if(sliders[i].slideVisivel > sliders[i].fim){
+                        sliders[i].slideVisivel = sliders[i].slideVisivel - 100
+                        sliders[i].tagUl.style.marginLeft = sliders[i].slideVisivel + "%"
+                    }
+                })
+                sliders[i].tagBtAnterior.addEventListener('click', function(){
+                    if(sliders[i].slideVisivel < sliders[i].inicio){
+                        sliders[i].slideVisivel = sliders[i].slideVisivel + 100
+                        sliders[i].tagUl.style.marginLeft = sliders[i].slideVisivel + "%"
+                    }
+                })
+            }
             
-            this.tagUl = document.querySelector(ul)
-            this.tagsLis = document.querySelectorAll(lis)
-            this.tagBtProximo = document.querySelector(btProximo)
-            this.tagBtAnterior = document.querySelector(btAnterior)
-            this.inicio = 0
-            this.cont = this.tagsLis.length
-            this.fim = -100 * (this.cont - 1)
-            this.slideVisivel = 0
-
-            this.start = function (){
-                this.tagBtProximo.addEventListener('click', this.moverProximo)
-                this.tagBtAnterior.addEventListener('click', this.moverAnterior)
-            }
-
-            this.moverProximo = function(){
-                let fim = this.fim
-                if(this.slideVisivel > fim){
-                    this.slideVisivel = this.slideVisivel - 100
-                    this.tagUl.style.marginLeft = this.slideVisivel + "%"
-                }
-            }
-
-            this.moverAnterior = function(){
-                let inicio = this.inicio
-                if(this.slideVisivel < inicio){
-                    this.slideVisivel = this.slideVisivel + 100
-                    this.tagUl.style.marginLeft = this.slideVisivel + "%"
-                }
-            }
-
         }
 
-        teste = new Slider1('.slider-container', '.slider-elemento', '.proximo', '.anterior')
-        teste.start()
+        sliderStart()
 
- 
- 
     </script>
 </body>
 </html>

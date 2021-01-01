@@ -1,0 +1,9 @@
+# Modo strict
+--------------
+É um modo que evita uma série de erros e conflitos no js. Para iniciá-lo coloca-se a sintaxe a seguir no início do código global:
+"use strict"
+
+<script>
+    "use strict"
+    //Código a seguir...
+</script>

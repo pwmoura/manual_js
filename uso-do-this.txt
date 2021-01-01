@@ -1,0 +1,11 @@
+Como usar o this:
+-----------------
+# Refere-se ao contexto/scopo local em que está inserido.
+# Pode ser entendido como local as {}. Cada vez que se usa muda o contexto.
+
+    const bola = {
+        a: futebol,
+        b: function(){
+            console.log(this.a)
+        }
+    }
