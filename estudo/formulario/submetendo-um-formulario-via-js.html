@@ -9,7 +9,7 @@
 <body>
     <form class="ctn-450 bd-outline mt-3 p-2" action="page-do-sistema.php" name="fmTeste" method="POST" id="fmTeste">
         <div class="">
-            <h1 class="t-5 pb-1">Anulando evento submit do formulário!</h1>
+            <h1 class="t-5 pb-1">Submetendo formulário via js...</h1>
         </div>
         <div class="mb-1">
             <label for="nome" id="labelNome">Nome:</label>
@@ -21,18 +21,23 @@
     </form>
 </body>
     <script>
-        fmTeste.btSubmit.addEventListener('submit',function(e){
+        fmTeste.btSubmit.addEventListener('click',function(e){
             
             //.preventDefault() --> Remove o evento do botão submit.
             // e --> é o paranto que representa o evento, pode ser trocado por outra letra.
             e.preventDefault()
 
-            let nome = document.forms['fmTeste']['nome'].value
-
+            /*  
+                Outras formas de selecionar o formulário e seus elementos:
+                let nome = document.forms['fmTeste']['nome'].value
+                let nome = fmTeste.nome.value
+            */
+           let nome = document.querySelector('[name=nome]').value
 
             if(nome != ""){
                 document.forms['fmTeste'].submit()
             }else{
+                alert("Vazio...")
                 return false
             }
 
