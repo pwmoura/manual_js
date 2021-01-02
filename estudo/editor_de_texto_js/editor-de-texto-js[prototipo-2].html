@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/ws-style.css">
+</head>
+<body>
+    <div class="ctn-450 mt-5">
+        <button onclick="negrito()" class="bt bt-outline">Negrito</button><br>
+        <div contenteditable="true" class="input-outline p-1 mt-1" id="editor">
+            asdfasdfasdf
+        </div>
+    </div>
+</body>
+    <script>
+        function negrito(){
+            let editor = document.getElementById("editor")
+            
+            // Retorna o elemento texto selecionado.
+            let selecao = window.getSelection();
+            console.log(selecao);
+
+            // Verifica se o editor está selecionado:
+            console.log(selecao.containsNode(editor, true))
+
+            // Retorna o texto selecionado.
+            console.log(selecao.toString())
+            console.log(selecao.anchorOffset)
+
+            //
+            console.log(selecao.rangeCount)
+
+
+
+        }
+    </script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/ws-style.css">
+</head>
+<body>
+    <div class="ctn-450 mt-5">
+        <button onclick="negrito()" class="bt bt-outline">Negrito</button><br>
+        <textarea class="input-outline p-1 mt-1" id="editor"></textarea>
+    </div>
+</body>
+    <script>
+        function negrito(){
+            let txt = document.getElementById("editor")
+            
+            //índices da seleção.
+            let a = txt.selectionStart
+            let d = txt.selectionEnd
+
+            //fatiando a string.
+            txt_antes = txt.value.substr(0,a)
+            txt_depois = txt.value.substr(d,txt.value.lenght)
+            txt_selecionado = txt.value.substr(a,d)
+
+            //Montando o texto final
+            txt_final = txt_antes + "<strong>" + txt_selecionado + "</strong>" + txt_depois
+
+            //Inserindo o texto de volta na div
+            txt.value = txt_final
+        }
+    </script>
+</html>
