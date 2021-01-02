@@ -1,0 +1,21 @@
+Tratando a seleção feita pelo usuário:
+=======================================
+
+    # window.selection
+    ----------------
+    Retorna a seleção feita pelo usuário.
+    let selecao = window.getSelection();
+    console.log(selecao);
+
+        ## Propriedades/atributos:
+        --------------------------
+
+        ## Métodos
+        ----------
+
+            .containsNode
+            --------------
+            // Verifica se a seleção foi feita em um container específico, retorna[true/false]:
+            console.log(selecao.containsNode(editor, true))
+
+    
