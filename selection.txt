@@ -1,6 +1,83 @@
 Tratando a seleção feita pelo usuário:
 =======================================
 
+    # Objeto Range
+    --------------
+    Representa um objeto de seleção, o alcance/distância. Deve ser iniciada criando um objeto.
+    let range = new Range();
+
+        ## .setStart(node, index)
+        -------------------------
+        Mostra onde começa a seleção na rage.
+        node --> é o nó.
+        index --> é a posição.
+        range.setStart(editor, 0);
+
+        ## .range.setEnd(node, index);
+        ------------------------------
+        Mostra onde termina a seleção. A contagem ocorre entre nós e o texto, no exemplo a seguir conta-se quatro, pois os textos sem nó são contados como nós: 
+            ex:
+            <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+
+        node --> é o nó.
+        index --> é a posição.
+        range.setEnd(editor, 3);
+
+        ## .removeAllRanges()
+        ---------------------
+        //Remove todas as seleções.
+        document.getSelection().removeAllRanges();
+
+        ## Aplicando a seleção no documento.
+        ------------------------------------
+        // Aplica a seleção no documento.
+        document.getSelection().addRange(range);
+
+        ## Código completo:
+        ----------------
+        function selecionar(){
+            
+            let range = new Range();
+
+            range.setStart(editor, 0);
+            range.setEnd(editor, 3);
+
+            // toString de um intervalo retorna seu conteúdo como texto, sem tags
+            console.log(range); // Example: italic
+
+            // vamos aplicar este intervalo para seleção de documentos (explicado mais tarde)
+            document.getSelection().addRange(range);
+
+        }
+
+        <div class="ctn-450 mt-5">
+            <button onclick="selecionar()" class="bt bt-outline">Negrito</button><br>
+            <div contenteditable="true" class="input-outline p-1 mt-1" id="editor">Este é um <i>italic</i> e este é <b>bold</b></div>
+        </div>
+
+        ## .firstChild
+        --------------
+        Esta propriedade permite extender a seleção em partes específicas dos nós filhos. Nesse exemplo a seleção começa depois do x da palavra exemplo e vai até a letra l de bold 
+        range.setStart(p.firstChild, 2);
+        range.setEnd(p.querySelector('b').firstChild, 3);
+
+
+        ## .startOffset
+           .startContainer
+        -------------------
+        nó e deslocamento do início
+
+        endContainer
+        endOffset
+        -------------------
+        nó e deslocamento do final,
+no exemplo acima: primeiro nó de texto dentro de <b>e 3.
+collapsed- booleano, truese o intervalo começa e termina no mesmo ponto (portanto, não há conteúdo dentro do intervalo),
+no exemplo acima: false
+commonAncestorContainer - o ancestral comum mais próximo de todos os nós dentro do intervalo,
+no exemplo acima: <p>
+
+
     # window.selection
     ----------------
     Retorna a seleção feita pelo usuário.
@@ -10,6 +87,10 @@ Tratando a seleção feita pelo usuário:
         ## Propriedades/atributos:
         --------------------------
 
+            .anchorOffset
+            // Retorna a posição que foi iniciada a seleção. Os espaços também contam.
+            console.log(selecao.anchorOffset)
+
         ## Métodos
         ----------
 
@@ -17,5 +98,16 @@ Tratando a seleção feita pelo usuário:
             --------------
             // Verifica se a seleção foi feita em um container específico, retorna[true/false]:
             console.log(selecao.containsNode(editor, true))
+
+            .toString()
+            -----------
+            // Retorna o texto selecionado em forma de string.
+            console.log(selecao.toString())
+
+
+    # fontes
+    --------
+    https://developer.mozilla.org/en-US/docs/Web/API/Selection
+    https://javascript.info/selection-range
 
     

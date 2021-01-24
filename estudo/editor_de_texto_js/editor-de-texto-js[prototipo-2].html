@@ -9,25 +9,23 @@
 <body>
     <div class="ctn-450 mt-5">
         <button onclick="negrito()" class="bt bt-outline">Negrito</button><br>
-        <div contenteditable="true" class="input-outline p-1 mt-1" id="editor">
-            asdfasdfasdf
-        </div>
+        <div contenteditable="true" class="input-outline p-1 mt-1" id="editor">Este é um <i>italic</i> e este é <b>bold</b></div>
     </div>
 </body>
     <script>
         function negrito(){
-            let editor = document.getElementById("editor")
             
-            // Retorna o elemento texto selecionado.
-            let selecao = window.getSelection();
-            console.log(selecao);
+            let range = new Range();
 
-            // Verifica se o editor está selecionado:
-            console.log(selecao.containsNode(editor, true))
+            range.setStart(editor, 0);
+            range.setEnd(editor, 3);
 
-            // Retorna o texto selecionado.
-            console.log(selecao.toString())
-            
+            // toString de um intervalo retorna seu conteúdo como texto, sem tags
+            console.log(range); // Example: italic
+
+            // vamos aplicar este intervalo para seleção de documentos (explicado mais tarde)
+            document.getSelection().addRange(range);
+
         }
     </script>
 </html>

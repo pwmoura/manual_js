@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        const janela = {
+            largura: window.innerWidth,
+            altura: window.innerHeight
+        }
+
+        const bgEspacial = {
+            tag: 'body',
+            background: 'black url(img/espaco.jpg)',
+            desenhar(){
+                let tag = document.querySelector(this.tag)
+                tag.style.background = this.background
+            }
+        }
+
+        const nave = {
+            x: janela.largura / 2 - 50,
+            y: janela.altura / 2 - 50,
+            tag: '#nave',
+            largura: '100px',
+            img: 'nave.gif',
+            desenhar(){
+                let body = document.querySelector('body')
+                let tag = body.innerHTML = `<div id="nave"><img src="img/${this.img}">`
+                let nv = document.querySelector(this.tag)
+                let imgNave = document.querySelector(this.tag + ' > img')
+                imgNave.style.maxWidth = '100%'
+                nv.style.width = this.largura
+                nv.style.position = 'absolute'
+                nv.style.left = this.x + 'px'
+                nv.style.top = this.y + 'px'
+            }
+        }
+
+        const nomeDoJogo = {
+            x: janela.largura / 2 - 300,
+            y: janela.altura / 2 - 190,
+            tag: '#txtViajanteEspacial',
+            largura: '600px',
+            altura: '120px',
+            desenhar(){
+                let body = document.querySelector('body')
+                let tag = body.innerHTML + `
+                    <div id="txtViajanteEspacial">
+                        <h1>Viajante Espacial</h1>
+                    </div>
+                `
+                body.innerHTML = tag
+                let ve = document.querySelector(nomeDoJogo.tag)
+                let h1 = document.querySelector(nomeDoJogo.tag + '> h1')
+                ve.style.width = nomeDoJogo.largura
+                ve.style.height = nomeDoJogo.altura
+                ve.style.position = 'absolute'
+                ve.style.top = nomeDoJogo.y + 'px'
+                ve.style.left = nomeDoJogo.x + 'px'
+                h1.style.color = 'white'
+                h1.style.fontSize = '50px'
+                h1.style.fontFamily = 'Arial Black, sans-serif'
+                h1.style.textAlign = 'center'
+            }
+        }
+
+        const btIniciar = {
+            x: janela.largura / 2,
+            y: janela.altura / 2,
+            tag: '#btIniciar',
+            largura: '300px',
+            altura: '60px',
+            desenhar(){
+                let body = document.querySelector('body')
+                let tag = body.innerHTML + `
+                    <button id="btIniciar">Iniciar jogo<button>
+                `
+                body.innerHTML = tag
+                let bt = document.querySelector(btIniciar.tag)
+                bt.style.border = '3px solid white'
+                bt.style.borderRadius = '4px'
+                bt.style.background = 'transparent'
+                bt.style.display = 'block'
+                bt.style.height = btIniciar.altura
+                bt.style.width = btIniciar.largura
+                bt.style.fontFamily = 'sans-serif'
+                bt.style.color = 'white'
+                bt.style.fontSize = '25px'
+                bt.style.cursor = 'pointer'
+                bt.style.position = 'absolute'
+                bt.style.left = btIniciar.x + 'px'
+                bt.style.top = btIniciar.y + 'px'
+
+            }
+        }
+
+        bgEspacial.desenhar()
+        nave.desenhar()
+        nomeDoJogo.desenhar()
+        btIniciar.desenhar()
+    </script>
+</body>
+</html>
